@@ -1,0 +1,34 @@
+.wishListComponent {
+    /* padding: 1rem 5.625rem; */
+}
+
+.wishList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    padding: 1rem 5.625rem;
+}
+
+.card-small {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wishListComponent .util-heading-medium {
+    text-align: center;
+    display:block;
+    margin: 1rem;
+}
+
+.wishlist-heading {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 662px){
+    .wishListComponent {
+        padding: 1rem ;
+    }
+    .wishList {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      }
+  }

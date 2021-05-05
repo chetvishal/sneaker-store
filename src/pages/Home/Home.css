@@ -1,0 +1,99 @@
+@import url('../../components/CSS/colors.css');
+
+.home {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  padding: 1rem 5.625rem;
+}
+
+/* DROP DOWN MENU */
+.drop-down-container {
+  border: 1px solid black;
+  font-size: 0.7rem;
+  padding: 0.3rem;
+}
+
+.drop-down-container select{
+  border: none;
+  font-size: 0.7rem;
+}
+
+.drop-down-container select:focus {
+  outline: none;
+}
+
+/* SLIDER */
+input[type=range] {
+  -webkit-appearance: none; 
+  background: transparent; 
+  background-color: black;
+  height: 3px;
+  border-radius: 50px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  width: 10px;
+  -webkit-appearance: none;
+  height: 10px;
+  cursor: pointer;
+  background: #434343;
+  vertical-align: middle;
+}
+
+/* FILTER CHECK BOXES */
+.filter-checkbox-container {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.filter-element {
+  margin-bottom: 2rem;
+}
+
+.filter-checkbox-container input[type="checkbox"]:after {
+  background: black;
+}
+
+/* HEADINGS */
+
+.filters .util-heading-small {
+  margin-bottom: 1.3rem;
+  margin-top: 1rem;
+}
+
+.filters .util-heading-medium {
+  display: block;
+  margin-top: 1rem;
+}
+
+/* PRODUCT LIST */
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.card-small {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+@media (max-width: 662px){
+  .home {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+  }
+  .filters {
+    margin-bottom: 1rem;
+  }
+  .products-list {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+

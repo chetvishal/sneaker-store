@@ -1,0 +1,33 @@
+@import url('./colors.css');
+
+.util-heading {
+    display: block;
+}
+
+.util-heading-large {
+    font-size: 4rem;
+}
+
+.util-heading-medium {
+    font-size: 2rem;
+}
+
+.util-heading-small {
+    display: block;
+    font-size: 1.2rem;
+    /* font-weight:lighter; */
+}
+
+.util-small-text {
+    font-size: 0.8rem;
+}
+
+.util-gray-text {
+    color: gray;
+}
+
+.util-center-text {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
