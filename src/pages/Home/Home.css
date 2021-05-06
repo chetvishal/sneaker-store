@@ -70,6 +70,10 @@ input[type='range']::-webkit-slider-thumb {
   margin-top: 1rem;
 }
 
+.filters-component {
+  position: fixed;
+}
+
 /* PRODUCT LIST */
 .products-list {
   display: grid;
@@ -94,6 +98,9 @@ input[type='range']::-webkit-slider-thumb {
   }
   .products-list {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  .filters-component {
+    position: relative;
   }
 }
 

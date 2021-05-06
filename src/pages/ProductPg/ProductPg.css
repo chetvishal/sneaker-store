@@ -1,0 +1,22 @@
+@import url('../../components/CSS/text-utilities.css');
+
+.product-description {
+    margin: 0 auto;
+    border: none;
+    margin-top: 5rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.action-buttons {
+        /* border: 1px solid black; */
+        height: 80px;
+        display: flex;
+        align-items: center;
+}
+
+.action-btn {
+    /* border: 1px solid black;  */
+    display: inline;
+    /* padding: 0.5rem; */
+    display: flex;
+}

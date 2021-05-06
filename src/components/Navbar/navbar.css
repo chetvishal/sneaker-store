@@ -119,7 +119,7 @@ header {
   display: none;
 }
 
-@media (max-width: 700px) {
+@media only screen and (max-width: 700px) {
   header {
     /* height: 100vh;
         border-bottom: 1px solid #e2e2e2;
@@ -157,6 +157,8 @@ header {
   }
   .search-box {
     border-bottom: 1px solid black;
+    height: 27px;
+    display: flex;
   }
   .nav-inputbox {
     margin-right: 10px;

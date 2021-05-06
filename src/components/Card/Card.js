@@ -1,5 +1,6 @@
 import React from 'react';
 import './card.css';
+import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useDataContext } from '../../context/cartContextProvider';
@@ -8,22 +9,26 @@ export const Card = (props) => {
 
     console.log(props)
 
+    const navigate = useNavigate();
+
     const { dispatch, updateServer } = useDataContext();
 
     return (
         <div class="card-small">
             <div class="card-small-image">
-                <img src={props.data.image} alt="" />
+                <img src={props.data.image} alt=""
+                    onClick={() => navigate(`/product/${props.data._id}`)}
+                />
                 <span class="simple-badge" style={{ display: props.data.inStock ? 'none' : 'false' }}>OUT OF STOCK</span>
                 <span class="card-small-dismiss">
                     <FontAwesomeIcon icon={faHeart} style={{ color: props.data.inWishList ? '#ff5656' : '#b8b4b6', padding: "0.3rem", borderRadius: "50%", fontSize: "1rem" }}
                         onClick={() => {
                             props.data.inWishList ?
-                                updateServer('REMOVE_FROM_WISHLIST', {_id: props.data._id}) 
+                                updateServer('REMOVE_FROM_WISHLIST', { _id: props.data._id })
                                 // dispatch({type: 'REMOVE_FROM_WISHLIST', payload: {id: props.data.id}})
                                 :
                                 // dispatch({type: 'ADD_TO_WISHLIST', payload:{id: props.data.id}})
-                                updateServer('ADD_TO_WISHLIST', {_id: props.data._id})
+                                updateServer('ADD_TO_WISHLIST', { _id: props.data._id })
                         }} />
                 </span>
             </div>
@@ -41,7 +46,7 @@ export const Card = (props) => {
                             onClick={() => {
                                 props.data.inCart ? dispatch({ type: 'SET_ROUTE', payload: 'CART' }) :
                                     // dispatch({type: 'ADD_TO_CART', payload: {id: props.data.id}})
-                                    updateServer('ADD_TO_CART', {_id: props.data._id})
+                                    updateServer('ADD_TO_CART', { _id: props.data._id })
                             }}
                         />
                     </Link>

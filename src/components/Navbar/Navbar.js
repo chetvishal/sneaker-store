@@ -24,11 +24,13 @@ export const Navbar = ({ setInput }) => {
                     <span>sneaker.store</span>
                 </Link>
                 <ul class="nav-list">
-                    <li className="search-box">
-                        <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox" placeholder="Search "
-                            placeholder="Search"
-                        />
-                        <FontAwesomeIcon icon={faSearch} />
+                    <li>
+                        <div className="search-box">
+                            <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox" placeholder="Search "
+                                placeholder="Search"
+                            />
+                            <FontAwesomeIcon icon={faSearch} />
+                        </div>
                     </li>
                     <li>
                         <a href="#"
