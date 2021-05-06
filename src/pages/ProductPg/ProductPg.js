@@ -29,53 +29,56 @@ export const ProductPg = () => {
     return (
 
         data === undefined ?
-            <img src={Load} alt="loading"/> :
-            <div className="cart-card product-description">
-                <div className="cart-image">
-                    <img src={data.image} alt="" />
-                </div>
-                <div className="cart-details">
-                    <span className="cart-item-title">{data.name}</span>
-                    <p>
-                        <span style={{ fontWeight: "bold" }}>₹{data.price} </span>
-                        <span className="util-gray-text" style={{ fontSize: "1rem" }}> {data.offer}</span>
-                        <span style={{ display: "block" }}>{data.fastDelivery ? "Fast Delivery" : "Fast Delivery not Available"}</span>
-                        <span style={{ display: "block", color: data.inStock ? 'green' : 'red', fontWeight: "bolder" }}>{data.inStock ? "In Stock" : "Out of stock"}</span>
-                    </p>
-                    <div className="action-buttons"
-                        style={{display: data.inStock ? "" : "none"}}
-                    >
-                        <div className="action-btn"
-                            onClick={() => data.inCart ? navigate('/cart') : updateServer('ADD_TO_CART', { _id: data._id })}
+            <img src={Load} alt="loading" /> :
+            <div className="product-body">
+                <div className="cart-card product-description">
+                    <div className="cart-image">
+                        <img src={data.image} alt="" />
+                        <div className="action-buttons"
+                            style={{ display: data.inStock ? "" : "none" }}
                         >
-                            <FontAwesomeIcon icon={faShoppingCart} style={{
-                                fontSize: "0.85rem",
-                                border: "0.4px solid #5d5d5d",
-                                padding: "0.5rem",
-                                borderRadius: "50%",
-                                color: "#5d5d5d",
-                                // pointerEvents: props.data.inStock ? "auto" : "none"
-                            }} />
-                            <span style={{ display: "inline", fontSize: "0.5rem", marginLeft: "0.5rem" }}>
-                                {data.inCart ? 'GO TO CART' : 'ADD TO CART'}
-                            </span>
+                            <div className="action-btn"
+                                onClick={() => data.inCart ? navigate('/cart') : updateServer('ADD_TO_CART', { _id: data._id })}
+                            >
+                                <FontAwesomeIcon icon={faShoppingCart} style={{
+                                    fontSize: "0.85rem",
+                                    border: "0.4px solid #5d5d5d",
+                                    padding: "0.5rem",
+                                    borderRadius: "50%",
+                                    color: "#5d5d5d",
+                                    // pointerEvents: props.data.inStock ? "auto" : "none"
+                                }} />
+                                <span className="prod-icon-txt">
+                                    {data.inCart ? 'GO TO CART' : 'ADD TO CART'}
+                                </span>
+                            </div>
+                            <div className="action-btn" style={{ marginLeft: "0.5rem" }}
+                                onClick={() => data.inWishList ?
+                                    updateServer('REMOVE_FROM_WISHLIST', { _id: data._id }) :
+                                    updateServer('ADD_TO_WISHLIST', { _id: data._id })}
+                            >
+                                <FontAwesomeIcon icon={faHeart} style={{
+                                    fontSize: "0.85rem",
+                                    border: "0.4px solid #5d5d5d",
+                                    padding: "0.5rem",
+                                    borderRadius: "50%",
+                                    color: data.inWishList ? '#ff5656' : '#b8b4b6',
+                                }} />
+                                <span className="prod-icon-txt">
+                                    {data.inWishList ? 'REMOVE FROM WISHLIST' : 'ADD TO WISHLIST'}
+                                </span>
+                            </div>
                         </div>
-                        <div className="action-btn" style={{ marginLeft: "0.5rem" }}
-                            onClick={() => data.inWishList ?
-                                updateServer('REMOVE_FROM_WISHLIST', { _id: data._id }) :
-                                updateServer('ADD_TO_WISHLIST', { _id: data._id })}
-                        >
-                            <FontAwesomeIcon icon={faHeart} style={{
-                                fontSize: "0.85rem",
-                                border: "0.4px solid #5d5d5d",
-                                padding: "0.5rem",
-                                borderRadius: "50%",
-                                color: data.inWishList ? '#ff5656' : '#b8b4b6',
-                            }} />
-                            <span style={{ display: "inline", fontSize: "0.5rem", marginLeft: "0.5rem" }}>
-                                {data.inWishList ? 'REMOVE FROM WISHLIST' : 'ADD TO WISHLIST'}
-                            </span>
-                        </div>
+                    </div>
+                    <div className="cart-details">
+                        <span className="cart-item-title">{data.name}</span>
+                        <p>
+                            <span style={{ fontWeight: "bold" }}>₹{data.price} </span>
+                            <span className="util-gray-text" style={{ fontSize: "1rem" }}> {data.offer}</span>
+                            <span style={{ display: "block" }}>{data.fastDelivery ? "Fast Delivery" : "Fast Delivery not Available"}</span>
+                            <span style={{ display: "block", color: data.inStock ? 'green' : 'red', fontWeight: "bolder" }}>{data.inStock ? "In Stock" : "Out of stock"}</span>
+                        </p>
+
                     </div>
                 </div>
             </div>

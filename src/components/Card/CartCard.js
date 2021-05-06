@@ -4,7 +4,7 @@ import { useDataContext } from '../../context/cartContextProvider';
 
 export const CartCard = ({data}) => {
 
-    const { dispatch, updateServer } = useDataContext();
+    const { updateServer } = useDataContext();
     
     const {_id} = data;
     console.log("from cartCart: ",_id);

@@ -25,14 +25,14 @@ export const Navbar = ({ setInput }) => {
                 <ul class="nav-list">
                     <li>
                         <div className="search-box">
-                            <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox" placeholder="Search "
+                            <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox" 
                                 placeholder="Search"
                             />
                             <FontAwesomeIcon icon={faSearch} />
                         </div>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="/"
                             onClick={handleCheck}
                         >
                             <Link to="/">
@@ -46,7 +46,7 @@ export const Navbar = ({ setInput }) => {
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="/cart"
                             onClick={handleCheck}
                         >
                             <Link to="cart">
@@ -61,7 +61,7 @@ export const Navbar = ({ setInput }) => {
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="/wishlist"
                             onClick={handleCheck}
                         >
                             <label for="nav-toggle">
