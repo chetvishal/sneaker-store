@@ -1,5 +1,5 @@
 import { useDataContext } from '../../context/cartContextProvider';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import Load from '../../assets/3.gif';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,7 @@ import "./ProductPg.css"
 
 export const ProductPg = () => {
 
-    const { state, dispatch, updateServer } = useDataContext();
+    const { state, updateServer } = useDataContext();
     const { products, cart, wishList } = state;
     const { id } = useParams();
     const findObj = products.find(item => item._id === id)
@@ -29,7 +29,7 @@ export const ProductPg = () => {
     return (
 
         data === undefined ?
-            <img src={Load} /> :
+            <img src={Load} alt="loading"/> :
             <div className="cart-card product-description">
                 <div className="cart-image">
                     <img src={data.image} alt="" />

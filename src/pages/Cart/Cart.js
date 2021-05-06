@@ -6,7 +6,7 @@ import { ShoppingCart } from '../../assets/index';
 export const Cart = () => {
 
     const { state } = useDataContext();
-    const { cart, products, wishList } = state;
+    const { cart } = state;
 
     // let cartVal = 0;
 
@@ -37,22 +37,19 @@ export const Cart = () => {
 
     return (
         <div className="cartComponent">
-            <span className="util-heading-medium">{state.cart.length ? 
+            <span className="util-heading-medium">{state.cart.length ?
                 <div className="cart-heading">
-                    CART 
-                    <ShoppingCart style={{width: "2rem", marginLeft: "1rem"}}/>
+                    CART
+                    <ShoppingCart style={{ width: "2rem", marginLeft: "1rem" }} />
                 </div> :
                 <div className="cart-heading">
                     CART IS EMPTY
-                    <ShoppingCart style={{width: "2rem", marginLeft: "1rem"}}/>
+                    <ShoppingCart style={{ width: "2rem", marginLeft: "1rem" }} />
                 </div>
             }</span>
             <div className="cart">
                 <div className="cartList">
                     {cart.map(i => {
-                        {/* <CartCard key={i._id} data={i} /> */}
-                        {/* if(i.inCart) console.log("inCart : ", i) */}
-                        {/* return i.inCart ? <CartCard key={i._id} data={i} /> : null */}
                         return <CartCard key={i._id} data={i} />
                     })}
                 </div>

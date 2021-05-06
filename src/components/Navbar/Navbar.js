@@ -5,11 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart, faSearch, faHome, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDataContext } from '../../context/cartContextProvider';
 import { Link } from 'react-router-dom';
-import { Jordans } from '../../assets/index';
 
 export const Navbar = ({ setInput }) => {
 
-    const { state, dispatch } = useDataContext();
+    const { state } = useDataContext();
     const check = useRef(null);
 
     const handleCheck = () => check.current.checked = false;

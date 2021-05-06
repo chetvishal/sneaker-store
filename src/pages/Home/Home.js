@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Card } from '../../components/index';
 import { useDataContext } from '../../context/cartContextProvider';
 import './Home.css';
-import { Loading, Jordans } from '../../assets/index';
 import Load from '../../assets/3.gif';
 
 export const Home = ({ input }) => {
@@ -115,7 +114,7 @@ export const Home = ({ input }) => {
                 {
                     FilteredData.length === 0 ?
 
-                        <img src={Load} /> :
+                        <img src={Load} alt="loading"/> :
                         FilteredData.map(i =>
                             i.name.toLowerCase().includes(input.toLowerCase()) &&
                                 i.price < Number(sliderVal) ?
