@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
-import { reducerFunction } from './reducerFunction';
+import { reducerFunction } from '../reducers/reducerFunction';
 import axios from 'axios';
 
 const dataContext = createContext();
