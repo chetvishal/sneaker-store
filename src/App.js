@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Home, Cart, WishList, NoRoute, ProductPg } from './pages/index';
+import { Home, Cart, WishList, NoRoute, ProductPg, Login } from './pages/index';
 import { Navbar, Toast } from './components/index.js';
 import { useDataContext } from './context/cartContextProvider';
 import { Route, Routes } from 'react-router-dom';
+import {PrivateRoute} from './api/PrivateRoute';
 
 function App() {
 
@@ -16,9 +17,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home input={input} />} />
         <Route path="/wishlist" element={<WishList />} />
-        <Route path="/cart" element={<Cart />} />
+        {/* <Route path="/cart" element={<Cart />} /> */}
+        <PrivateRoute path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductPg />} />
         <Route path="*" element={<NoRoute />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       {toast.visible && <Toast text={toast.text} />}
     </div>

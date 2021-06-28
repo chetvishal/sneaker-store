@@ -10,6 +10,8 @@
 
 .util-heading-medium {
     font-size: 2rem;
+    
+    display: block;
 }
 
 .util-heading-small {

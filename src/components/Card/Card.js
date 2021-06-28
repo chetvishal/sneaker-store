@@ -7,8 +7,6 @@ import { useDataContext } from '../../context/cartContextProvider';
 import { Link } from 'react-router-dom';
 export const Card = (props) => {
 
-    console.log(props)
-
     const navigate = useNavigate();
 
     const { dispatch, updateServer } = useDataContext();

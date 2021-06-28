@@ -1,0 +1,48 @@
+.login-form {
+  border: 1px solid black;
+  padding: 1rem 1rem 3rem;
+  margin: 2rem auto;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* login form input box */
+.login-input {
+  display: block;
+  margin: 0.5rem 0;
+  /* background-color: #e8f0fe; */
+  /* border: none; */
+  border-width: 0 0 1px;
+  border-bottom-color: rgb(222, 222, 222);
+  width: 15rem;
+}
+
+.login-input:focus {
+  outline: none;
+}
+
+.login-form-heading {
+  margin: 4.75rem 0;
+
+  text-align: center;
+}
+
+.login-form-box {
+  border-bottom: 1px solid black;
+  height: 27px;
+  display: flex;
+}
+
+
+
+.sign-up-link {
+  text-decoration: underline;
+  margin-top: 2.5rem;
+  cursor: pointer;
+}
+
+.login-input-text {
+  color: var(--grey-variant);
+}
