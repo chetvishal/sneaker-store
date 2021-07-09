@@ -1,7 +1,7 @@
 import "./Login.css"
 import { useAuthContext } from '../../context/authContext';
-import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from 'react';
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 export const Login = () => {
 
@@ -19,6 +19,12 @@ export const Login = () => {
             loginUserWithCredentials(email, password).then(() => navigate(state?.from ? state.from : '/login'))
     }
 
+    useEffect(() => {
+        if(isUserLoggedIn) {
+            navigate('/user')
+        }
+    })
+
 
     return (
         <div className="login">
@@ -26,7 +32,11 @@ export const Login = () => {
                 <div className="login-form-heading">
                     <span className="util-heading-medium">Log in</span>
                     <span className="util-heading-small">You need to be logged in to continue</span>
-                    <span className="util-heading-small sign-up-link">Sign Up</span>
+                    <span className="util-heading-small sign-up-link">
+                        <Link to="/user" className="nostyle">
+                            Sign Up
+                        </Link>
+                    </span>
 
                 </div>
                 <form >

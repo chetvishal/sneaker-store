@@ -1,0 +1,28 @@
+.user-container {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(200px, 1fr));
+    /* width: 50%; */
+    margin: 0 auto;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+}
+
+.user-container-box {
+    border: 1px solid black;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: left;
+}
+
+.user-container-box-img{
+    width: 2.5rem;
+    height: auto;
+}
+
+.user-container-box  .util-heading-small{
+    display: block;
+    font-size: 1.2rem;
+    /* font-weight: lighter; */
+    align-self: center;
+    padding: 0 0.9rem;
+}

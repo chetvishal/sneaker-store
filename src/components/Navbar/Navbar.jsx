@@ -51,7 +51,7 @@ export const Navbar = ({ setInput }) => {
                         <a href="/cart"
                             onClick={handleCheck}
                         >
-                            <Link to="cart">
+                            <Link to="/cart">
                                 <span class="icon-badge">
                                     <i style={{ fontStyle: "normal" }}>
                                         <FontAwesomeIcon icon={faShoppingCart} />
@@ -84,7 +84,7 @@ export const Navbar = ({ setInput }) => {
                         <a href="/"
                             onClick={handleCheck}
                         >
-                            <Link to="/login">
+                            <Link to={isUserLoggedIn ? "/user" : "/login"}>
                                 <span class="icon-badge">
                                     <i style={{ fontStyle: "normal" }}>
                                         <FontAwesomeIcon icon={faUser} />

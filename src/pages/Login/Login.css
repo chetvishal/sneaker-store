@@ -21,6 +21,7 @@
 
 .login-input:focus {
   outline: none;
+  border-bottom-color: black;
 }
 
 .login-form-heading {
