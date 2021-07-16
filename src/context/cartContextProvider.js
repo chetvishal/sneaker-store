@@ -1,30 +1,38 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import { reducerFunction } from '../reducers/reducerFunction';
 import axios from 'axios';
+import { useAuthContext } from './authContext';
 
 const dataContext = createContext();
 
 export const useDataContext = () => useContext(dataContext);
 
 export const CartContextProvider = ({ children }) => {
+
+    const { userDetails } = useAuthContext();
+
     useEffect(() => {
         async function getData() {
-
-            await axios.get('https://stark-sierra-40682.herokuapp.com/products').then((resp) => {
+            console.log("authcontext: ", userDetails)
+            await axios.get('http://localhost:8000/products').then((resp) => {
                 // console.log('from context', resp)
                 dispatch({ type: 'ADD_PRODUCTS_FROM_SERVER', payload: resp.data.products });
-            }).catch(err => alert('failed to fetch data from server: ', err));
+            }).catch(err => console.log('failed to fetch data from server: ', err));
 
-            await axios.get('https://stark-sierra-40682.herokuapp.com/cart').then((resp) => {
-                // console.log("from cart context",resp.data.cart)
-                dispatch({ type: 'ADD_CART_FROM_SERVER', payload: resp.data.cart });
-            }).catch(err => console.log(err));
+            await axios.get(
+                `http://localhost:8000/cart/${userDetails.userId}`, {
+                headers: {
+                    'Authorization': userDetails.token
+                }
+            }).then((resp) => {
+                console.log("from cart context", resp)
+                dispatch({ type: 'ADD_CART_FROM_SERVER', payload: resp.data.cart.products });
+            }).catch(err => console.log('failed to fetch data from server: (cartList)', err));
 
-            await axios.get('https://stark-sierra-40682.herokuapp.com/wishlist').then((resp) => {
-                // console.log("from wishlist context",resp.data.wishlist)
-                dispatch({ type: 'ADD_WISHLIST_FROM_SERVER', payload: resp.data.wishlist });
-            }).catch(err => alert('failed to fetch data from server: (cartList)', err));
-
+            await axios.get(`http://localhost:8000/wishlist/${userDetails.userId}`).then((resp) => {
+                console.log("from wishlist context",resp.data.wishlist.products)
+                dispatch({ type: 'ADD_WISHLIST_FROM_SERVER', payload: resp.data.wishlist.products });
+            }).catch(err => console.log('failed to fetch data from server: (wishlist)', err));
         }
         getData();
     }, []);

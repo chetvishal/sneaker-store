@@ -1,4 +1,4 @@
-import "./Login.css"
+import styles from "./Login.module.css"
 import { useAuthContext } from '../../context/authContext';
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
@@ -25,14 +25,13 @@ export const Login = () => {
         }
     })
 
-
     return (
-        <div className="login">
-            <div className="login-form">
-                <div className="login-form-heading">
+        <div className={styles.login}>
+            <div className={styles.loginForm}>
+                <div className={styles.loginFormHeading}>
                     <span className="util-heading-medium">Log in</span>
                     <span className="util-heading-small">You need to be logged in to continue</span>
-                    <span className="util-heading-small sign-up-link">
+                    <span className={`util-heading-small ${styles.signUpLink}`}>
                         <Link to="/user" className="nostyle">
                             Sign Up
                         </Link>
@@ -40,12 +39,12 @@ export const Login = () => {
 
                 </div>
                 <form >
-                    <span className="util-heading-small login-input-text">Email</span>
-                    <input type="text" className="login-input" onChange={e => setEmail(e.target.value)} />
-                    <span className="util-heading-small login-input-text">Password</span>
-                    <input type="password" className="login-input" onChange={e => setPassword(e.target.value)} />
+                    <span className={`util-heading-small ${styles.loginInputText}`}>Email</span>
+                    <input type="text" className={styles.loginInput} onChange={e => setEmail(e.target.value)} />
+                    <span className={`util-heading-small ${styles.loginInputText}`}>Password</span>
+                    <input type="password" className={styles.loginInput} onChange={e => setPassword(e.target.value)} />
                     <button
-                        className="order-btn"
+                        className="submit-button"
                         style={{ backgroundColor: "black" }}
                         onClick={handleLogin}
                     >{isUserLoggedIn ? "LOGOUT" : 'LOGIN'}</button>

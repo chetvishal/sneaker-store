@@ -1,6 +1,6 @@
 import { useDataContext } from '../../context/cartContextProvider';
 import { CartCard } from '../../components/index';
-import "./Cart.css";
+import styles from "./Cart.module.css";
 import { ShoppingCart } from '../../assets/index';
 
 export const Cart = () => {
@@ -11,45 +11,42 @@ export const Cart = () => {
     const cartVal = cart.reduce((acc, cur) => {
         console.log("cur price: ", cur._id.price, "cur qty: ", cur.qty)
         return Number(acc) + Number(cur._id.price) * Number(cur.qty)
-    }, 0)
-
-    console.log("cartVal: ", cartVal);
-
+    }, 0);
 
     return (
-        <div className="cartComponent">
-            <span className="util-heading-medium">{state.cart.length ?
-                <div className="cart-heading">
+        <div className={styles.cartComponent}>
+            <span className={`util-heading-medium`}>{state.cart.length ?
+                <div className={styles.cartHeadingText}>
                     CART
                     <ShoppingCart style={{ width: "2rem", marginLeft: "1rem" }} />
                 </div> :
-                <div className="cart-heading">
+                <div className={styles.cartHeadingText}>
                     CART IS EMPTY
                     <ShoppingCart style={{ width: "2rem", marginLeft: "1rem" }} />
                 </div>
             }</span>
-            <div className="cart">
+            <div className={styles.cart}>
                 <div className="cartList">
                     {cart.map(i => {
                         return <CartCard key={i._id} data={i} />
                     })}
                 </div>
-                <div className="cartDetails" style={{ display: state.cart.length ? 'block' : 'none' }}>
-                    <div className="cartDetailCard">
-                        <div className="cartDetailSection">
-                            <span className="cart-detail-heading">Total Price ({state.cart.length} items)</span>
-                            <span className="cart-detail-value">₹{cartVal}</span>
+                <div className={styles.cartDetails} style={{ display: state.cart.length ? 'block' : 'none' }}>
+                    <div className={styles.cartDetailCard}>
+                        <div className={styles.cartDetailSection}>
+                            <span>Total Price ({state.cart.length} items)</span>
+                            <span>₹{cartVal}</span>
                         </div>
-                        <div className="cartDetailSection">
-                            <span className="cart-detail-heading">Delivery Charges</span>
-                            <span className="cart-detail-value">₹0.00</span>
+                        <div className={styles.cartDetailSection}>
+                            <span>Delivery Charges</span>
+                            <span>₹0.00</span>
                         </div>
                         <hr />
-                        <div className="cartDetailSection">
-                            <span className="cart-detail-heading">Grand Total</span>
-                            <span className="cart-detail-value">₹{cartVal}</span>
+                        <div className={styles.cartDetailSection}>
+                            <span>Grand Total</span>
+                            <span>₹{cartVal}</span>
                         </div>
-                        <button className="order-btn">Place Order</button>
+                        <button className={styles.orderBtn}>Place Order</button>
                     </div>
                 </div>
             </div>

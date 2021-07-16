@@ -17,14 +17,14 @@ export const Navbar = ({ setInput }) => {
 
     return (
         <header>
-            <input type="checkbox" id="nav-toggle" class="nav-toggle"
+            <input type="checkbox" id="nav-toggle" className="nav-toggle"
                 ref={check}
             />
-            <nav class="navbar">
-                <Link to="/" class="nav-logo">
+            <nav className="navbar">
+                <Link to="/" className="nav-logo">
                     <span>sneaker.store</span>
                 </Link>
-                <ul class="nav-list">
+                <ul className="nav-list">
                     <li>
                         <div className="search-box">
                             <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox"
@@ -38,7 +38,7 @@ export const Navbar = ({ setInput }) => {
                             onClick={handleCheck}
                         >
                             <Link to="/">
-                                <span class="icon-badge">
+                                <span className="icon-badge">
                                     <i style={{ fontStyle: "normal" }}>
                                         <FontAwesomeIcon icon={faHome} />
                                         <span className="nav-icon-label">Home</span>
@@ -52,11 +52,11 @@ export const Navbar = ({ setInput }) => {
                             onClick={handleCheck}
                         >
                             <Link to="/cart">
-                                <span class="icon-badge">
+                                <span className="icon-badge">
                                     <i style={{ fontStyle: "normal" }}>
                                         <FontAwesomeIcon icon={faShoppingCart} />
                                         <span className="nav-icon-label">Cart</span>
-                                        <span class="avatar-badge-notification-icon" style={{ display: state.cart.length ? 'inline' : 'none' }}><span className="notification-value">{state.cart.length}</span></span>
+                                        <span className="avatar-badge-notification-icon" style={{ display: state.cart.length ? 'inline' : 'none' }}><span className="notification-value">{state.cart.length}</span></span>
                                     </i>
                                 </span>
                             </Link>
@@ -68,12 +68,12 @@ export const Navbar = ({ setInput }) => {
                         >
                             <label for="nav-toggle">
                                 <Link to="wishlist">
-                                    <span class="icon-badge">
+                                    <span className="icon-badge">
                                         <i style={{ fontStyle: "normal" }}>
                                             <FontAwesomeIcon icon={faHeart} />
                                             {/* {state.wishList.length } */}
                                             <span className="nav-icon-label">Wishlist</span>
-                                            <span class="avatar-badge-notification-icon" style={{ display: state.wishList.length ? 'inline' : 'none' }}><span className="notification-value"> {state.wishList.length}</span></span>
+                                            <span className="avatar-badge-notification-icon" style={{ display: state.wishList.length ? 'inline' : 'none' }}><span className="notification-value"> {state.wishList.length}</span></span>
                                         </i>
                                     </span>
                                 </Link>
@@ -85,7 +85,7 @@ export const Navbar = ({ setInput }) => {
                             onClick={handleCheck}
                         >
                             <Link to={isUserLoggedIn ? "/user" : "/login"}>
-                                <span class="icon-badge">
+                                <span className="icon-badge">
                                     <i style={{ fontStyle: "normal" }}>
                                         <FontAwesomeIcon icon={faUser} />
                                         <span className="nav-icon-label">User</span>

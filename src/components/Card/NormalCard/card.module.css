@@ -1,0 +1,108 @@
+@import url("../../CSS/colors.css");
+@import url("../../CSS/text-utilities.css");
+
+/* SMALL CARD */
+.cardSmall {
+  display: inline-flex;
+  border: 0.5px solid transparent;
+  flex-direction: column;
+  height: auto;
+  max-width: 300px;
+  margin: 1rem;
+}
+
+.cardSmall:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.cardSmallImageContainer {
+  position: relative;
+}
+
+.cardSmallContent {
+  padding: 10px 20px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cardSmallContent h4 {
+  margin: 0px 0px 5px;
+  padding: 0 1rem;
+}
+
+.cardSmallTitle {
+  display: block;
+  margin: 0px 0px 8px;
+  padding: 0 0rem;
+  font-size: 1rem;
+}
+
+.cardSmallText {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.cardSmallContent p {
+  margin: 0;
+  padding: 0 0rem;
+  line-height: 1rem;
+  font-size: 0.85rem;
+}
+
+.cardActionBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardActionIcon {
+  font-size: 0.85rem;
+  border: 0.4px solid #5d5d5d;
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: #5d5d5d;
+}
+
+.cardActionText {
+  display: block;
+  font-size: 0.5rem;
+}
+
+.cardLikeIcon {
+  padding: 0.3rem;
+  border-radius: 50%;
+  font-size: 1rem;
+}
+
+.cardSmallImage {
+  height: auto;
+  margin: 0;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* SMALL CARD WITH BADGE */
+.cardBadge {
+  position: absolute;
+  top: 0px;
+  left: -4px;
+}
+
+/* SMALL CARD WITH DISMISS BUTTON */
+
+.cardLikeBtn {
+  color: white;
+  position: absolute;
+  right: 4px;
+  top: 3px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+
+
+

@@ -16,8 +16,10 @@ export const AuthContextProvider = ({ children }) => {
     //     }
     // }, [])
 
-    
+
     const [isUserLoggedIn, setUserLoggedIn] = useState(JSON.parse(localStorage?.getItem('loggedIn'))?.loggedIn || false);
+    const { token, userId } = JSON.parse(localStorage?.getItem('loggedIn')) || { token: "", userId: "" }
+    const [userDetails, setUserDetails] = useState({ token, userId });
 
     const loginService = (username, password) => {
         return axios.post("http://localhost:8000/login", {
@@ -43,7 +45,8 @@ export const AuthContextProvider = ({ children }) => {
                     .then(resp => {
                         toggleLoggedIn();
                         console.log("response: ", resp)
-                        localStorage.setItem("loggedIn", JSON.stringify({ loggedIn: true, token: resp.data.accessToken, username: resp.data.username }))
+                        setUserDetails({ token: resp.data.accessToken, userId: resp.data.userId })
+                        localStorage.setItem("loggedIn", JSON.stringify({ loggedIn: true, token: resp.data.accessToken, userId: resp.data.userId }))
                         resolve({ success: true })
                     })
                     .catch(() => reject({ success: false }))
@@ -59,7 +62,7 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     return (
-        <authContext.Provider value={{ isUserLoggedIn, loginUserWithCredentials, logoutUser }}>
+        <authContext.Provider value={{ isUserLoggedIn, loginUserWithCredentials, logoutUser, userDetails }}>
             {children}
         </authContext.Provider>
     )

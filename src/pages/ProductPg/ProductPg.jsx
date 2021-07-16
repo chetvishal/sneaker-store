@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import Load from '../../assets/3.gif';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import "./ProductPg.css"
+import styles from  "./ProductPg.module.css"
 
 export const ProductPg = () => {
 
@@ -13,8 +13,6 @@ export const ProductPg = () => {
     const { id } = useParams();
     const findObj = products.find(item => item._id === id)
     const navigate = useNavigate();
-
-    // console.log("products from id: ", data)
 
     const inCartAndWishList = (item) => {
         return {
@@ -30,55 +28,49 @@ export const ProductPg = () => {
 
         data === undefined ?
             <img src={Load} alt="loading" /> :
-            <div className="product-body">
-                <div className="cart-card product-description">
-                    <div className="cart-image">
-                        <img src={data.image} alt="" />
-                        <div className="action-buttons"
+            <div className={styles.productBody}>
+                <div className={`${styles.productCard} ${styles.productDescription}`}>
+                    <div className={styles.productImageContainer}>
+                        <img src={data.image} className={styles.productImage} alt="" />
+                        <div className={styles.userActionButtons}
                             style={{ display: data.inStock ? "" : "none" }}
                         >
-                            <div className="action-btn"
+                            <div className={styles.actionButton}
                                 onClick={() => data.inCart ? navigate('/cart') : updateServer('ADD_TO_CART', { _id: data._id })}
                             >
                                 <FontAwesomeIcon icon={faShoppingCart} style={{
-                                    fontSize: "0.85rem",
-                                    border: "0.4px solid #5d5d5d",
-                                    padding: "0.5rem",
-                                    borderRadius: "50%",
                                     color: "#5d5d5d",
-                                    // pointerEvents: props.data.inStock ? "auto" : "none"
-                                }} />
-                                <span className="prod-icon-txt">
+                                }} 
+                                    className={styles.actionBtnIcon}
+                                />
+                                <span className={styles.actionBtnTxt}>
                                     {data.inCart ? 'GO TO CART' : 'ADD TO CART'}
                                 </span>
                             </div>
-                            <div className="action-btn" style={{ marginLeft: "0.5rem" }}
+                            <div className={styles.actionButton} style={{ marginLeft: "0.5rem" }}
                                 onClick={() => data.inWishList ?
                                     updateServer('REMOVE_FROM_WISHLIST', { _id: data._id }) :
                                     updateServer('ADD_TO_WISHLIST', { _id: data._id })}
                             >
                                 <FontAwesomeIcon icon={faHeart} style={{
-                                    fontSize: "0.85rem",
-                                    border: "0.4px solid #5d5d5d",
-                                    padding: "0.5rem",
-                                    borderRadius: "50%",
                                     color: data.inWishList ? '#ff5656' : '#b8b4b6',
-                                }} />
-                                <span className="prod-icon-txt">
+                                }} 
+                                    className={styles.actionBtnIcon}
+                                />
+                                <span className={styles.actionBtnTxt}>
                                     {data.inWishList ? 'REMOVE FROM WISHLIST' : 'ADD TO WISHLIST'}
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div className="cart-details">
-                        <span className="cart-item-title">{data.name}</span>
-                        <p>
-                            <span style={{ fontWeight: "bold" }}>₹{data.price} </span>
-                            <span className="util-gray-text" style={{ fontSize: "1rem" }}> {data.offer}</span>
-                            <span style={{ display: "block" }}>{data.fastDelivery ? "Fast Delivery" : "Fast Delivery not Available"}</span>
-                            <span style={{ display: "block", color: data.inStock ? 'green' : 'red', fontWeight: "bolder" }}>{data.inStock ? "In Stock" : "Out of stock"}</span>
+                    <div className={styles.productDetails}>
+                        <span className={styles.productTitle}>{data.name}</span>
+                        <p className={styles.productInfoList}>
+                            <span className={styles.productPrice}>₹{data.price} </span>
+                            <span className={`util-gray-text ${styles.productOffer}`} > {data.offer}</span>
+                            <span className={styles.productDeliveryOption}>{data.fastDelivery ? "Fast Delivery" : "Fast Delivery not Available"}</span>
+                            <span className={styles.productInStock} style={{ color: data.inStock ? 'green' : 'red', }}>{data.inStock ? "In Stock" : "Out of stock"}</span>
                         </p>
-
                     </div>
                 </div>
             </div>
