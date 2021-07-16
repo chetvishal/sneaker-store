@@ -17,12 +17,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home input={input} />} />
         <Route path="/wishlist" element={<WishList />} />
-        {/* <Route path="/cart" element={<Cart />} /> */}
         <PrivateRoute path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductPg />} />
         <Route path="*" element={<NoRoute />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <button onClick={()=> console.log("data context: ", state)}>data context</button>
       {toast.visible && <Toast text={toast.text} />}
     </div>
   );
