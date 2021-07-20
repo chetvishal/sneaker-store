@@ -25,5 +25,16 @@
   }
   .wishList {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    padding: 1rem 0;
+  }
+}
+
+@media (max-width: 780px) {
+  .wishListComponent {
+    padding: 1rem;
+  }
+  .wishList {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    padding: 1rem 0;
   }
 }

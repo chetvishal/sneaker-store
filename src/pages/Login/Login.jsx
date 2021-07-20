@@ -2,25 +2,35 @@ import styles from "./Login.module.css"
 import { useAuthContext } from '../../context/authContext';
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { useDataContext } from "../../context/dataContextProvider";
 
 export const Login = () => {
 
     const { isUserLoggedIn, loginUserWithCredentials, logoutUser } = useAuthContext();
+    const [errorText, setErrorText] = useState("");
+    const { updateServer } = useDataContext();
     const { state } = useLocation();
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const handleLogin = e => {
+
+    const handleLogin = async (e) => {
         e.preventDefault();
-        console.log("email: ", email, 'password', password)
         if (isUserLoggedIn) {
             logoutUser()
-        } else
-            loginUserWithCredentials(email, password).then(() => navigate(state?.from ? state.from : '/login'))
+        } else {
+            await loginUserWithCredentials(email, password)
+                .then((resp) => {
+                    updateServer('LOGIN', resp)
+                    navigate(state?.from ? state.from : '/login')
+                }).catch((err) => {
+                    setErrorText(err.message)
+                })
+        }
     }
 
     useEffect(() => {
-        if(isUserLoggedIn) {
+        if (isUserLoggedIn) {
             navigate('/user')
         }
     })
@@ -32,14 +42,14 @@ export const Login = () => {
                     <span className="util-heading-medium">Log in</span>
                     <span className="util-heading-small">You need to be logged in to continue</span>
                     <span className={`util-heading-small ${styles.signUpLink}`}>
-                        <Link to="/user" className="nostyle">
+                        <Link to="/signup" className="nostyle">
                             Sign Up
                         </Link>
                     </span>
 
                 </div>
                 <form >
-                    <span className={`util-heading-small ${styles.loginInputText}`}>Email</span>
+                    <span className={`util-heading-small ${styles.loginInputText}`}>Username</span>
                     <input type="text" className={styles.loginInput} onChange={e => setEmail(e.target.value)} />
                     <span className={`util-heading-small ${styles.loginInputText}`}>Password</span>
                     <input type="password" className={styles.loginInput} onChange={e => setPassword(e.target.value)} />
@@ -49,6 +59,8 @@ export const Login = () => {
                         onClick={handleLogin}
                     >{isUserLoggedIn ? "LOGOUT" : 'LOGIN'}</button>
                 </form>
+                
+                <span className="util-heading-small" style={{color: "red", textAlign: "center"}}>{errorText}</span>
             </div>
         </div>
     )

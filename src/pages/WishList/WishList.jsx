@@ -1,4 +1,4 @@
-import { useDataContext } from '../../context/cartContextProvider';
+import { useDataContext } from '../../context/dataContextProvider';
 import { Card } from '../../components/index';
 import styles from './wishlist.module.css';
 import { Heart } from '../../assets/index.js';
@@ -27,8 +27,7 @@ export const WishList = () => {
             <div className={styles.wishList}>
                 {newList.map(i => {
                     const data = { ...i._id, inWishList: i.inWishList, inCart: i.inCart }
-                    console.log("data from: ", data)
-                    return i.inWishList ? <Card key={i._id} data={{ ...i._id, inWishList: i.inWishList, inCart: i.inCart }} /> : null
+                    return i.inWishList ? <Card key={i._id._id} data={data} /> : null
                 })}
             </div>
         </div>

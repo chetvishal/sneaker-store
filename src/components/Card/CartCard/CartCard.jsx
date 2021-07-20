@@ -1,13 +1,10 @@
 import React from 'react';
 import styles from './cartCard.module.css';
-import { useDataContext } from '../../../context/cartContextProvider';
+import { useDataContext } from '../../../context/dataContextProvider';
 
 export const CartCard = ({data}) => {
 
     const { updateServer } = useDataContext();
-    
-    const {_id} = data;
-    console.log("from cartCart: ",_id);
 
     return (
         <div className={styles.cartCard}>
@@ -16,17 +13,17 @@ export const CartCard = ({data}) => {
                 <div>
                     <button
                         onClick={() => {
-                            updateServer('INCREASE_CART_QTY', {_id: data._id._id, qty: data.qty})
+                            updateServer('INCREASE_CART_QTY', {_id: data._id._id, quantity: data.quantity})
                         }}
                         className={styles.cartQtyBtn}
                     >+</button>
-                    <span className={styles.cartQty}> {data.qty} </span>
+                    <span className={styles.cartQty}> {data.quantity} </span>
                     <button
                         onClick={() => {
-                            data.qty === 1 ?
+                            data.quantity === 1 ?
                                 updateServer('REMOVE_FROM_CART', {_id: data._id._id}) 
                                 :
-                                updateServer('DECREASE_CART_QTY', {_id: data._id._id, qty: data.qty})
+                                updateServer('DECREASE_CART_QTY', {_id: data._id._id, quantity: data.quantity})
                         }}
                         className={styles.cartQtyBtn}
                     >-</button>

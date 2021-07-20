@@ -91,7 +91,7 @@ input[type='range']::-webkit-slider-thumb {
   .home {
     display: flex;
     flex-direction: column;
-    padding: 1rem 2rem;
+    padding: 1rem;
   }
   .filters {
     margin-bottom: 1rem;

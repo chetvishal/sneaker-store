@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card } from '../../components/index';
-import { useDataContext } from '../../context/cartContextProvider';
+import { useDataContext } from '../../context/dataContextProvider';
 import styles from './Home.module.css';
 import Load from '../../assets/3.gif';
 
@@ -63,7 +63,7 @@ export const Home = ({ input }) => {
 
                     <span className="util-heading-small">Sort</span>
                     <span className={`${styles.dropDownContainer} ${styles.filterElement}`}>
-                        <label for="sort-price" class="a-native-dropdown">Sort by:</label>
+                        <label htmlFor="sort-price" className="a-native-dropdown">Sort by:</label>
                         <select name="cars" id="sort-price" onChange={handleDropDownChange}>
                             <option
                                 value="none"

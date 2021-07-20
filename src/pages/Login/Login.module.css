@@ -1,5 +1,4 @@
 .loginForm {
-  border: 1px solid black;
   padding: 1rem 1rem 3rem;
   margin: 2rem auto;
   width: 85%;
@@ -12,8 +11,6 @@
 .loginInput {
   display: block;
   margin: 0.5rem 0;
-  /* background-color: #e8f0fe; */
-  /* border: none; */
   border-width: 0 0 1px;
   border-bottom-color: rgb(222, 222, 222);
   width: 15rem;

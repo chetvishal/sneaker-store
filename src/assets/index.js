@@ -5,3 +5,4 @@ export { ReactComponent as Jordans } from './jordans.svg';
 export { ReactComponent as Box } from './box-svgrepo-com.svg';
 export { ReactComponent as Location } from './location-svgrepo-com.svg';
 export { ReactComponent as RedHeart } from './heart-color.svg';
+export { ReactComponent as Home } from './home.svg';

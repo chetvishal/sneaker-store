@@ -1,4 +1,4 @@
-import { useDataContext } from '../../context/cartContextProvider';
+import { useDataContext } from '../../context/dataContextProvider';
 import { CartCard } from '../../components/index';
 import styles from "./Cart.module.css";
 import { ShoppingCart } from '../../assets/index';
@@ -9,8 +9,7 @@ export const Cart = () => {
     const { cart } = state;
 
     const cartVal = cart.reduce((acc, cur) => {
-        console.log("cur price: ", cur._id.price, "cur qty: ", cur.qty)
-        return Number(acc) + Number(cur._id.price) * Number(cur.qty)
+        return Number(acc) + Number(cur._id.price) * Number(cur.quantity)
     }, 0);
 
     return (
@@ -28,7 +27,7 @@ export const Cart = () => {
             <div className={styles.cart}>
                 <div className="cartList">
                     {cart.map(i => {
-                        return <CartCard key={i._id} data={i} />
+                        return <CartCard key={i._id._id} data={i} />
                     })}
                 </div>
                 <div className={styles.cartDetails} style={{ display: state.cart.length ? 'block' : 'none' }}>

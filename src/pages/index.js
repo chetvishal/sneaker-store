@@ -5,3 +5,4 @@ export {WishList} from './WishList/WishList.jsx';
 export {ProductPg} from './ProductPg/ProductPg.jsx';
 export {Login} from './Login/Login.jsx';
 export {User} from './User/User.jsx';
+export {Signup} from './Signup/Signup.jsx'

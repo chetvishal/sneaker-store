@@ -3,7 +3,7 @@ import styles from './card.module.css';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { useDataContext } from '../../../context/cartContextProvider';
+import { useDataContext } from '../../../context/dataContextProvider';
 import { Link } from 'react-router-dom';
 export const Card = ({ data }) => {
 
@@ -27,7 +27,7 @@ export const Card = ({ data }) => {
                             data.inWishList ?
                                 updateServer('REMOVE_FROM_WISHLIST', { _id: data._id })
                                 :
-                                updateServer('ADD_TO_WISHLIST', { _id: data._id })
+                                updateServer('ADD_TO_WISHLIST', { data })
                         }}
                         className={`${styles.cardLikeIcon}`}
                     />
@@ -46,7 +46,7 @@ export const Card = ({ data }) => {
                         <FontAwesomeIcon icon={faShoppingCart} style={{ pointerEvents: data.inStock ? "auto" : "none" }}
                             onClick={() => {
                                 data.inCart ? dispatch({ type: 'SET_ROUTE', payload: 'CART' }) :
-                                    updateServer('ADD_TO_CART', { _id: data._id })
+                                    updateServer('ADD_TO_CART', { data })
                             }}
                             className={styles.cardActionIcon}
                         />

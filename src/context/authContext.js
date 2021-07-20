@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from 'axios';
 
 const authContext = createContext();
@@ -6,23 +6,12 @@ export const useAuthContext = () => useContext(authContext);
 
 export const AuthContextProvider = ({ children }) => {
 
-    // useEffect(() => {
-    //     try {
-    //         const loggedIn = JSON.parse(localStorage?.getItem('loggedIn'));
-    //         console.log("local data: ", loggedIn);
-    //         loggedIn?.loggedIn ? setUserLoggedIn(true) : setUserLoggedIn(false);
-    //     } catch (err) {
-    //         console.log("failed fetching local data: ", err)
-    //     }
-    // }, [])
-
-
     const [isUserLoggedIn, setUserLoggedIn] = useState(JSON.parse(localStorage?.getItem('loggedIn'))?.loggedIn || false);
-    const { token, userId } = JSON.parse(localStorage?.getItem('loggedIn')) || { token: "", userId: "" }
-    const [userDetails, setUserDetails] = useState({ token, userId });
+    const { token, userId, username } = JSON.parse(localStorage?.getItem('loggedIn')) || { token: "", userId: "", username: "" }
+    const [userDetails, setUserDetails] = useState({ token, userId, username });
 
     const loginService = (username, password) => {
-        return axios.post("http://localhost:8000/login", {
+        return axios.post("https://ecom-sneaker-api.herokuapp.com/login", {
             user: { username, password }
         });
     }
@@ -44,14 +33,36 @@ export const AuthContextProvider = ({ children }) => {
                 loginService(username, password)
                     .then(resp => {
                         toggleLoggedIn();
-                        console.log("response: ", resp)
-                        setUserDetails({ token: resp.data.accessToken, userId: resp.data.userId })
-                        localStorage.setItem("loggedIn", JSON.stringify({ loggedIn: true, token: resp.data.accessToken, userId: resp.data.userId }))
-                        resolve({ success: true })
+                        setUserDetails({ token: resp.data.accessToken, userId: resp.data.userId, username: resp.data.username })
+                        localStorage.setItem("loggedIn", JSON.stringify({ loggedIn: true, token: resp.data.accessToken, userId: resp.data.userId, username: resp.data.username }))
+                        resolve({ success: true, token: resp.data.accessToken, userId: resp.data.userId })
                     })
-                    .catch(() => reject({ success: false }))
+                    .catch((err) => {
+                        console.log("resp messsage: ", err.response.data.message)
+                        reject({ success: false, message: err.response.data.message })
+                    }
+                    )
             } catch (error) {
-                reject({ success: false })
+                reject({ success: false, error: error.response.data.message })
+            }
+        })
+    }
+
+    const signupUser = (signupDetails) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                await axios.post('https://ecom-sneaker-api.herokuapp.com/signup', {
+                    data: {
+                        username: signupDetails.username,
+                        password: signupDetails.password,
+                        name: signupDetails.name,
+                        email: signupDetails.email
+                    }
+                })
+                resolve({ success: true, username: signupDetails.username, password: signupDetails.password })
+            } catch (err) {
+                console.log("error creating account", err.response.data.message)
+                reject({ success: false, message: err.response.data.message })
             }
         })
     }
@@ -62,7 +73,7 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     return (
-        <authContext.Provider value={{ isUserLoggedIn, loginUserWithCredentials, logoutUser, userDetails }}>
+        <authContext.Provider value={{ isUserLoggedIn, loginUserWithCredentials, logoutUser, userDetails, setUserDetails, signupUser }}>
             {children}
         </authContext.Provider>
     )

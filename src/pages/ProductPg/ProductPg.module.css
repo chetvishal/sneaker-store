@@ -52,6 +52,10 @@
   box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px,
     rgb(60 64 67 / 15%) 0px 2px 6px 2px;
   margin-bottom: 1rem;
+
+  margin: 0 auto;
+  border: none;
+  margin-top: 5rem;
 }
 
 .productImageContainer {
@@ -98,4 +102,13 @@
 .productInStock {
   display: block;
   font-weight: bolder;
+}
+
+@media (max-width: 476px) {
+  .productCard {
+    flex-direction: column-reverse;
+  }
+  .productImage {
+    max-width: 100%;
+  }
 }

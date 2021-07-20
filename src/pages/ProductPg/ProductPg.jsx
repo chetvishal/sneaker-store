@@ -1,4 +1,4 @@
-import { useDataContext } from '../../context/cartContextProvider';
+import { useDataContext } from '../../context/dataContextProvider';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import Load from '../../assets/3.gif';
@@ -36,7 +36,7 @@ export const ProductPg = () => {
                             style={{ display: data.inStock ? "" : "none" }}
                         >
                             <div className={styles.actionButton}
-                                onClick={() => data.inCart ? navigate('/cart') : updateServer('ADD_TO_CART', { _id: data._id })}
+                                onClick={() => data.inCart ? navigate('/cart') : updateServer('ADD_TO_CART', { data })}
                             >
                                 <FontAwesomeIcon icon={faShoppingCart} style={{
                                     color: "#5d5d5d",
@@ -50,7 +50,7 @@ export const ProductPg = () => {
                             <div className={styles.actionButton} style={{ marginLeft: "0.5rem" }}
                                 onClick={() => data.inWishList ?
                                     updateServer('REMOVE_FROM_WISHLIST', { _id: data._id }) :
-                                    updateServer('ADD_TO_WISHLIST', { _id: data._id })}
+                                    updateServer('ADD_TO_WISHLIST', { data })}
                             >
                                 <FontAwesomeIcon icon={faHeart} style={{
                                     color: data.inWishList ? '#ff5656' : '#b8b4b6',

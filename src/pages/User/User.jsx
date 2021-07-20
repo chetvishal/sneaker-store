@@ -1,38 +1,45 @@
 import styles from './User.module.css'
 import { useAuthContext } from '../../context/authContext';
-import { useNavigate, useLocation, Link } from "react-router-dom";
-import {Box, Location, ShoppingCart2, RedHeart} from '../../assets/index';
+import { useDataContext } from '../../context/dataContextProvider';
+import { useNavigate } from "react-router-dom";
+import {Box, ShoppingCart2, RedHeart, Home} from '../../assets/index';
 
 export const User = () => {
-    const { logoutUser } = useAuthContext();
+    const { logoutUser, userDetails } = useAuthContext();
+    const {updateServer} = useDataContext();
+    const navigate = useNavigate()
+    const logoutHandler = () => {
+        logoutUser()
+        updateServer("LOGOUT")
+    }
     return (
         <div className={styles.user}>
             <div className={styles.userContainer}>
                 <div className={styles.userContainerHeading}>
-                    <span className="util-heading-medium">Hi Elon</span>
+                    <span className="util-heading-medium">Hi {userDetails.username}</span>
                 </div>
                 <div className={styles.userActionList}>
-                    <div className={styles.userActionBtn}>
+                    <div className={styles.userActionBtn} onClick={()=>navigate('/cart')}>
                         <Box className={styles.userActionImg}/>
-                        <span className={`util-heading-small ${styles.userActionTxt}`}>Your orders</span>
+                        <span className={`util-heading-small ${styles.userActionTxt}`}>Orders</span>
                     </div>
-                    <div className={styles.userActionBtn}>
-                        <Location className={styles.userActionImg}/>
-                        <span className={`util-heading-small ${styles.userActionTxt}`}>Your Address</span>
+                    <div className={styles.userActionBtn}  onClick={()=>navigate('/')}>
+                        <Home className={styles.userActionImg}/>
+                        <span className={`util-heading-small ${styles.userActionTxt}`}>Home</span>
                     </div>
-                    <div className={styles.userActionBtn}>
+                    <div className={styles.userActionBtn}  onClick={()=>navigate('/cart')}>
                         <ShoppingCart2 className={styles.userActionImg}/>
-                        <span className={`util-heading-small ${styles.userActionTxt}`}>Your Cart</span>
+                        <span className={`util-heading-small ${styles.userActionTxt}`}>Cart</span>
                     </div>
-                    <div className={styles.userActionBtn}>
+                    <div className={styles.userActionBtn}  onClick={()=>navigate('/wishlist')}>
                         <RedHeart className={styles.userActionImg}/>
-                        <span className={`util-heading-small ${styles.userActionTxt}`}>Your Wishlist</span>
+                        <span className={`util-heading-small ${styles.userActionTxt}`}>Wishlist</span>
                     </div>
                 </div>
                 <button
                         className="submit-button"
                         style={{ backgroundColor: "black" }}
-                        onClick={logoutUser}
+                        onClick={logoutHandler}
                     >LOGOUT</button>
             </div>
         </div>

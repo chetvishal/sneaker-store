@@ -26,7 +26,6 @@
     padding: 0 0.9rem;
 }
 
-
 .userContainer {
     border: 1px solid black;
     padding: 1rem 1rem 3rem;
@@ -40,6 +39,12 @@
   .userContainerHeading {
     margin: 2.75rem 0;
     text-align: center;
+  }
+
+  @media (max-width: 488px) {
+    .userActionList {
+        grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
+    }
   }
   
   

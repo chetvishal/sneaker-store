@@ -25,6 +25,7 @@
     height: auto;
     margin: 0;
     max-width: 100%;
+    min-width: 250px;
     object-fit: cover;
 }
 
@@ -81,6 +82,16 @@
     display: block;
     font-weight: bolder;
 }
+
+@media (max-width: 476px) {
+    .cartCard {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .cartDetails {
+        /* text-align: center; */
+    }
+  }
 
 
 
