@@ -7,18 +7,18 @@
 }
 
 /* DROP DOWN MENU */
-.drop-down-container {
+.dropDownContainer {
   border: 1px solid black;
   font-size: 0.7rem;
   padding: 0.3rem;
 }
 
-.drop-down-container select{
+.dropDownContainer select{
   border: none;
   font-size: 0.7rem;
 }
 
-.drop-down-container select:focus {
+.dropDownContainer select:focus {
   outline: none;
 }
 
@@ -45,16 +45,16 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 /* FILTER CHECK BOXES */
-.filter-checkbox-container {
+.filterCheckboxContainer {
   display: block;
   font-size: 0.9rem;
 }
 
-.filter-element {
+.filterElement {
   margin-bottom: 2rem;
 }
 
-.filter-checkbox-container input[type="checkbox"]:after {
+.filterCheckboxContainer input[type="checkbox"]:after {
   background: black;
 }
 
@@ -70,12 +70,12 @@ input[type='range']::-webkit-slider-thumb {
   margin-top: 1rem;
 }
 
-.filters-component {
+.filtersComponent {
   position: fixed;
 }
 
 /* PRODUCT LIST */
-.products-list {
+.productsList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
@@ -91,15 +91,15 @@ input[type='range']::-webkit-slider-thumb {
   .home {
     display: flex;
     flex-direction: column;
-    padding: 1rem 2rem;
+    padding: 1rem;
   }
   .filters {
     margin-bottom: 1rem;
   }
-  .products-list {
+  .productsList {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
-  .filters-component {
+  .filtersComponent {
     position: relative;
   }
 }

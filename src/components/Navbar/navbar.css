@@ -89,31 +89,10 @@ header {
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
   display: block;
-  /* background: black;
-  height: 2px;
-  width: 2em;
-  border-radius: 2px; */
   position: relative;
   cursor: pointer;
 }
-/* 
-.nav-toggle-label span::before, 
-.nav-toggle-label span::after {
-  content: '';
-  position: absolute;
-}
 
-.nav-toggle-label span::before {
-  bottom: 7px;
-}
-
-.nav-toggle-label span::after {
-  top: 7px;
-} */
-
-.bars {
-  /* display: none; */
-}
 
 .times {
   display: none;
@@ -121,27 +100,14 @@ header {
 
 @media only screen and (max-width: 700px) {
   header {
-    /* height: 100vh;
-        border-bottom: 1px solid #e2e2e2;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; */
         border-bottom: 1px solid #e2e2e2;
   }
   .navbar {
-    /* flex-direction: column;
-        line-height: 3rem;
-        border-bottom: none; */
         border-bottom: none;
     justify-content: space-around;
   }
-  .nav-logo {
-    /* align-self: center; */
-    /* display: none; */
-  }
+ 
   .nav-list {
-    /* display: flex;
-        flex-direction: column; */
 
     /* NEW CSS */
     height: 100vh;

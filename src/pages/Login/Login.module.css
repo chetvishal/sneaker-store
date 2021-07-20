@@ -1,5 +1,4 @@
-.login-form {
-  border: 1px solid black;
+.loginForm {
   padding: 1rem 1rem 3rem;
   margin: 2rem auto;
   width: 85%;
@@ -9,22 +8,21 @@
 }
 
 /* login form input box */
-.login-input {
+.loginInput {
   display: block;
   margin: 0.5rem 0;
-  /* background-color: #e8f0fe; */
-  /* border: none; */
   border-width: 0 0 1px;
   border-bottom-color: rgb(222, 222, 222);
   width: 15rem;
 }
 
-.login-input:focus {
+.loginInput:focus {
   outline: none;
+  border-bottom-color: black;
 }
 
-.login-form-heading {
-  margin: 4.75rem 0;
+.loginFormHeading {
+  margin: 2.75rem 0;
 
   text-align: center;
 }
@@ -37,12 +35,12 @@
 
 
 
-.sign-up-link {
+.signUpLink {
   text-decoration: underline;
   margin-top: 2.5rem;
   cursor: pointer;
 }
 
-.login-input-text {
+.loginInputText {
   color: var(--grey-variant);
 }

@@ -1,3 +1,5 @@
+import { initialDataState } from '../context/dataContextProvider';
+
 export const reducerFunction = (state, action) => {
     switch (action.type) {
         case 'ADD_PRODUCTS_FROM_SERVER':
@@ -15,17 +17,17 @@ export const reducerFunction = (state, action) => {
         case 'ADD_TO_CART':
             return {
                 ...state,
-                cart: [...state.cart, { ...action.payload, qty: 1 }],
+                cart: [...state.cart, { ...action.payload, quantity: 1 }],
             }
         case 'INCREASE_CART_QTY':
             return {
                 ...state,
-                cart: state.cart.map(i => i._id._id === action.payload._id ? { ...i, qty: i.qty + 1  } : i)
+                cart: state.cart.map(i => i._id._id === action.payload._id ? { ...i, quantity: i.quantity + 1 } : i)
             }
         case 'DECREASE_CART_QTY':
             return {
                 ...state,
-                cart: state.cart.map(i => i._id._id === action.payload._id ? { ...i, qty: i.qty - 1 } : i)
+                cart: state.cart.map(i => i._id._id === action.payload._id ? { ...i, quantity: i.quantity - 1 } : i)
             }
         case 'REMOVE_FROM_CART':
             return {
@@ -44,8 +46,10 @@ export const reducerFunction = (state, action) => {
             }
         case 'SET_ROUTE':
             return { ...state, route: action.payload }
-        case 'SET_TOAST': 
-            return {...state, toast: {visible: action.payload.visible, text: action.payload.text}}
+        case 'SET_TOAST':
+            return { ...state, toast: { visible: action.payload.visible, text: action.payload.text } }
+        case 'LOGOUT':
+            return {  ...initialDataState, products: state.products }
         default:
             return state;
     }

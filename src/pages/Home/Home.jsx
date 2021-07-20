@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from '../../components/index';
-import { useDataContext } from '../../context/cartContextProvider';
-import './Home.css';
+import { useDataContext } from '../../context/dataContextProvider';
+import styles from './Home.module.css';
 import Load from '../../assets/3.gif';
 
 export const Home = ({ input }) => {
@@ -11,12 +11,10 @@ export const Home = ({ input }) => {
     const [sliderVal, setSliderVal] = useState(989);
 
     const handleDropDownChange = (e) => {
-        // console.log(e.target.value);
         dispatch({ type: "SORT", payload: e.target.value })
     }
 
     const handleSlider = (e) => {
-        // e.preventDefault();
         setSliderVal(() => e.target.value);
     }
 
@@ -31,7 +29,6 @@ export const Home = ({ input }) => {
         })
         return newArr;
     }
-    // console.log("checking inCartAndWishList: ",inCartAndWishList(state.products))
 
     //Function to sort products array
     const sortData = (itemArr, sort) => {
@@ -59,15 +56,14 @@ export const Home = ({ input }) => {
     const FilteredData = getFilteredData(sortedData, state);
 
     return (
-        <div className="home">
-            <div className="filters">
-                {/* SORTING INPUT ELEMENTS */}
-                <div className="filters-component">
+        <div className={styles.home}>
+            <div className={styles.filters}>
+                <div className={styles.filtersComponent}>
                     <span className="util-heading-medium">Filters</span>
 
                     <span className="util-heading-small">Sort</span>
-                    <span className="drop-down-container filter-element">
-                        <label for="sort-price" class="a-native-dropdown">Sort by:</label>
+                    <span className={`${styles.dropDownContainer} ${styles.filterElement}`}>
+                        <label htmlFor="sort-price" className="a-native-dropdown">Sort by:</label>
                         <select name="cars" id="sort-price" onChange={handleDropDownChange}>
                             <option
                                 value="none"
@@ -86,35 +82,42 @@ export const Home = ({ input }) => {
                     <br />
 
                     <span className="util-heading-small">Range</span>
-                    <input type="range" min={15} max={989} value={sliderVal} className="slider filter-element" onChange={handleSlider} ></input> ₹{sliderVal}
+                    <input
+                        type="range"
+                        min={15}
+                        max={989}
+                        value={sliderVal}
+                        className={`${styles.slider} ${styles.filterElement}`}
+                        onChange={handleSlider} >
+                        </input> ₹{sliderVal}
 
 
                     {/* FILTERING INPUT ELEMENTS */}
                     <span className="util-heading-small">Filter by</span>
-                    <label className="filter-checkbox-container">
+                    <label className={styles.filterCheckboxContainer}>
                         <input
                             type="checkbox"
                             checked={state.showInventoryAll}
                             onChange={() => dispatch({ type: "TOGGLE_INVENTORY" })}
                         />
-                    Include out of stock
-                </label>
-                    <label className="filter-checkbox-container filter-element">
+                        Include out of stock
+                    </label>
+                    <label className={`${styles.filterCheckboxContainer} filter-element`}>
                         <input
                             type="checkbox"
                             checked={state.showFastDelivery}
                             onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
                         />
-                     Fast delivery only
+                        Fast delivery only
                     </label>
                 </div>
             </div>
 
-            <div className="products-list">
+            <div className={styles.productsList}>
                 {
                     FilteredData.length === 0 ?
 
-                        <img src={Load} alt="loading"/> :
+                        <img src={Load} alt="loading" /> :
                         FilteredData.map(i =>
                             i.name.toLowerCase().includes(input.toLowerCase()) &&
                                 i.price < Number(sliderVal) ?

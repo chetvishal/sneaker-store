@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Home, Cart, WishList, NoRoute, ProductPg, Login } from './pages/index';
-import { Navbar, Toast } from './components/index.js';
-import { useDataContext } from './context/cartContextProvider';
+import { Home, Cart, WishList, NoRoute, ProductPg, Login,User, Signup } from './pages/index';
+import { Navbar, Toast, Footer } from './components/index.js';
+import { useDataContext } from './context/dataContextProvider';
 import { Route, Routes } from 'react-router-dom';
 import {PrivateRoute} from './api/PrivateRoute';
 
@@ -16,14 +16,16 @@ function App() {
       <Navbar setInput={setInput} />
       <Routes>
         <Route path="/" element={<Home input={input} />} />
-        <Route path="/wishlist" element={<WishList />} />
+        <PrivateRoute path="/wishlist" element={<WishList />} />
         <PrivateRoute path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductPg />} />
         <Route path="*" element={<NoRoute />} />
         <Route path="/login" element={<Login />} />
+        <PrivateRoute path="/user" element={<User />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-      <button onClick={()=> console.log("data context: ", state)}>data context</button>
       {toast.visible && <Toast text={toast.text} />}
+      <Footer />
     </div>
   );
 }
