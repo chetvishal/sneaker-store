@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useDataContext } from '../../../context/dataContextProvider';
+import { useAuthContext } from '../../../context/authContext';
 import { Link } from 'react-router-dom';
 export const Card = ({ data }) => {
 
     const navigate = useNavigate();
 
     const { dispatch, updateServer } = useDataContext();
+    const { isUserLoggedIn } = useAuthContext();
 
     return (
         <div className={styles.cardSmall}>
@@ -22,6 +24,7 @@ export const Card = ({ data }) => {
                     style={{ display: data.inStock ? 'none' : 'false' }}
                 >OUT OF STOCK</span>
                 <span className={`card-small-dismiss ${styles.cardLikeBtn}`}>
+                <Link to={isUserLoggedIn ? '' : '/login'}>
                     <FontAwesomeIcon icon={faHeart} style={{ color: data.inWishList ? '#ff5656' : '#b8b4b6' }}
                         onClick={() => {
                             data.inWishList ?
@@ -31,6 +34,7 @@ export const Card = ({ data }) => {
                         }}
                         className={`${styles.cardLikeIcon}`}
                     />
+                    </Link>
                 </span>
             </div>
             <div className={styles.cardSmallContent}>
@@ -42,7 +46,7 @@ export const Card = ({ data }) => {
                     </p>
                 </div>
                 <div className={styles.cardActionBtn} style={{ display: data.inStock ? '' : "none" }}>
-                    <Link to={data.inCart ? '/cart' : ''}>
+                    <Link to={isUserLoggedIn ? data.inCart ? '/cart' : '' : '/login'}>
                         <FontAwesomeIcon icon={faShoppingCart} style={{ pointerEvents: data.inStock ? "auto" : "none" }}
                             onClick={() => {
                                 data.inCart ? dispatch({ type: 'SET_ROUTE', payload: 'CART' }) :

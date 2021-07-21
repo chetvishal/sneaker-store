@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router';
 import Load from '../../assets/3.gif';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import styles from  "./ProductPg.module.css"
+import styles from "./ProductPg.module.css";
+import { useAuthContext } from '../../context/authContext';
+import { Link } from 'react-router-dom';
 
 export const ProductPg = () => {
 
     const { state, updateServer } = useDataContext();
+    const { isUserLoggedIn } = useAuthContext();
     const { products, cart, wishList } = state;
     const { id } = useParams();
     const findObj = products.find(item => item._id === id)
@@ -38,11 +41,13 @@ export const ProductPg = () => {
                             <div className={styles.actionButton}
                                 onClick={() => data.inCart ? navigate('/cart') : updateServer('ADD_TO_CART', { data })}
                             >
-                                <FontAwesomeIcon icon={faShoppingCart} style={{
-                                    color: "#5d5d5d",
-                                }} 
-                                    className={styles.actionBtnIcon}
-                                />
+                                <Link to={isUserLoggedIn ? '' : '/login'}>
+                                    <FontAwesomeIcon icon={faShoppingCart} style={{
+                                        color: "#5d5d5d",
+                                    }}
+                                        className={styles.actionBtnIcon}
+                                    />
+                                </Link>
                                 <span className={styles.actionBtnTxt}>
                                     {data.inCart ? 'GO TO CART' : 'ADD TO CART'}
                                 </span>
@@ -52,11 +57,13 @@ export const ProductPg = () => {
                                     updateServer('REMOVE_FROM_WISHLIST', { _id: data._id }) :
                                     updateServer('ADD_TO_WISHLIST', { data })}
                             >
-                                <FontAwesomeIcon icon={faHeart} style={{
-                                    color: data.inWishList ? '#ff5656' : '#b8b4b6',
-                                }} 
-                                    className={styles.actionBtnIcon}
-                                />
+                                <Link to={isUserLoggedIn ? '' : '/login'}>
+                                    <FontAwesomeIcon icon={faHeart} style={{
+                                        color: data.inWishList ? '#ff5656' : '#5d5d5d',
+                                    }}
+                                        className={styles.actionBtnIcon}
+                                    />
+                                </Link>
                                 <span className={styles.actionBtnTxt}>
                                     {data.inWishList ? 'REMOVE FROM WISHLIST' : 'ADD TO WISHLIST'}
                                 </span>
