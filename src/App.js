@@ -27,7 +27,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
       </Routes>
       {toast.visible && <Toast text={toast.text} />}
-      <button onClick={()=> console.log("auth: ", isUserLoggedIn)}>auth</button>
       <Footer />
     </div>
   );
