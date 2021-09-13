@@ -11,7 +11,7 @@ export const Login = () => {
     const { updateServer } = useDataContext();
     const { state } = useLocation();
     const navigate = useNavigate()
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const handleLogin = async (e) => {
@@ -19,7 +19,7 @@ export const Login = () => {
         if (isUserLoggedIn) {
             logoutUser()
         } else {
-            await loginUserWithCredentials(email, password)
+            await loginUserWithCredentials(username, password)
                 .then((resp) => {
                     updateServer('LOGIN', resp)
                     navigate(state?.from ? state.from : '/login')
@@ -50,17 +50,36 @@ export const Login = () => {
                 </div>
                 <form >
                     <span className={`util-heading-small ${styles.loginInputText}`}>Username</span>
-                    <input type="text" className={styles.loginInput} onChange={e => setEmail(e.target.value)} />
+                    <input
+                        type="text"
+                        className={styles.loginInput}
+                        onChange={e => setUsername(e.target.value)}
+                        value={username}
+                    />
                     <span className={`util-heading-small ${styles.loginInputText}`}>Password</span>
-                    <input type="password" className={styles.loginInput} onChange={e => setPassword(e.target.value)} />
+                    <input
+                        type="password"
+                        className={styles.loginInput}
+                        onChange={e => setPassword(e.target.value)}
+                        value={password}
+                    />
                     <button
                         className="submit-button"
                         style={{ backgroundColor: "black" }}
                         onClick={handleLogin}
                     >{isUserLoggedIn ? "LOGOUT" : 'LOGIN'}</button>
                 </form>
-                
-                <span className="util-heading-small" style={{color: "red", textAlign: "center"}}>{errorText}</span>
+                <span
+                    className="util-heading-small"
+                    style={{ textAlign: "center", cursor: "pointer" }}
+                    onClick={() => {
+                        setUsername("Elon")
+                        setPassword("12345")
+                    }}
+                >
+                    Login as guest
+                </span>
+                <span className="util-heading-small" style={{ color: "red", textAlign: "center" }}>{errorText}</span>
             </div>
         </div>
     )
