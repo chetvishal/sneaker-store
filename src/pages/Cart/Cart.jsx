@@ -5,12 +5,18 @@ import { ShoppingCart } from '../../assets/index';
 
 export const Cart = () => {
 
-    const { state } = useDataContext();
+    const { state, dispatch } = useDataContext();
     const { cart } = state;
 
     const cartVal = cart.reduce((acc, cur) => {
         return Number(acc) + Number(cur._id.price) * Number(cur.quantity)
     }, 0);
+
+    const removeToast = () => {
+        setTimeout(() => {
+            dispatch({ type: 'SET_TOAST', payload: { visible: false, text: "" } })
+        }, 3000)
+    }
 
     return (
         <div className={styles.cartComponent}>
@@ -45,7 +51,13 @@ export const Cart = () => {
                             <span>Grand Total</span>
                             <span>₹{cartVal}</span>
                         </div>
-                        <button className={styles.orderBtn}>Place Order</button>
+                        <button
+                            className={styles.orderBtn}
+                            onClick={() => {
+                                dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Payment feature coming soon..." } })
+                                removeToast()
+                            }}
+                        >Place Order</button>
                     </div>
                 </div>
             </div>
