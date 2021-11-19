@@ -3,7 +3,8 @@ import { CartCard } from '../../components/index';
 import styles from "./Cart.module.css";
 import { ShoppingCart } from '../../assets/index';
 import axios from 'axios';
-import { API_URL, RAZORPAY_CHECKOUT_URL, RAZORPAY_KEY, RAZORPAY_LOGO } from '../../api/Razorpay';
+import { RAZORPAY_CHECKOUT_URL, RAZORPAY_KEY, RAZORPAY_LOGO } from '../../api/Razorpay';
+import { ROOT_ENDPOINT } from '../../api/Api';
 import { useNavigate } from 'react-router';
 
 function loadScript(src) {
@@ -32,8 +33,7 @@ export const Cart = () => {
 
     const displayRazorpay = async () => {
         const response = await loadScript(`${RAZORPAY_CHECKOUT_URL}`);
-
-        const payment_response = await axios.post(`${API_URL}/payments/razorpay`, {
+        const payment_response = await axios.post(`${ROOT_ENDPOINT}/payments/razorpay`, {
             amount: cartVal,
         });
 
@@ -54,14 +54,13 @@ export const Cart = () => {
             order_id: orderId,
             handler: async function (response) {
                 const paymentVerification = await axios.post(
-                    `${API_URL}/payments/verification`,
+                    `${ROOT_ENDPOINT}/payments/verification`,
                     {
                         orderId: orderId,
                         paymentId: response.razorpay_payment_id,
                         signature: response.razorpay_signature,
                     }
                 );
-
                 if (paymentVerification.data.success) {
                     alert(paymentVerification.data.message);
                     updateServer('CLEAR_CART')
