@@ -3,8 +3,10 @@ import { Card } from '../../components/index';
 import { useDataContext } from '../../context/dataContextProvider';
 import styles from './Home.module.css';
 import Load from '../../assets/3.gif';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-export const Home = ({ input }) => {
+export const Home = ({ input, setInput }) => {
 
     const { state, dispatch } = useDataContext();
     const { cart, wishList } = state;
@@ -177,6 +179,13 @@ export const Home = ({ input }) => {
                         />
                         Gucci
                     </label>
+
+                    <div className={`search-box ${styles.searchFilter}`} style={{marginTop: "1rem"}}>
+                            <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox"
+                                placeholder="Search"
+                                style={{textAlign: "left"}}
+                            />
+                    </div>
                 </div>
             </div>
 

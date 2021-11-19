@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Navbar setInput={setInput} />
       <Routes>
-        <Route path="/" element={<Home input={input} />} />
+        <Route path="/" element={<Home input={input} setInput={setInput}/>} />
         <PrivateRoute path="/wishlist" element={<WishList />} />
         <PrivateRoute path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductPg />} />

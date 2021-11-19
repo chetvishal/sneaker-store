@@ -124,7 +124,8 @@ header {
   .search-box {
     border-bottom: 1px solid black;
     height: 27px;
-    display: flex;
+    /* display: flex; */
+    display: none;
   }
   .nav-inputbox {
     margin-right: 10px;

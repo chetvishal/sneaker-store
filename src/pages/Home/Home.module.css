@@ -85,6 +85,10 @@ input[type='range']::-webkit-slider-thumb {
   margin-right: auto;
 }
 
+.searchFilter {
+  display: none;
+}
+
 
 
 @media (max-width: 662px){
@@ -101,6 +105,9 @@ input[type='range']::-webkit-slider-thumb {
   }
   .filtersComponent {
     position: relative;
+  }
+  .searchFilter {
+    display: block;
   }
 }
 
