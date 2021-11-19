@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card } from '../../components/index';
 import { useDataContext } from '../../context/dataContextProvider';
 import styles from './Home.module.css';
-import Load from '../../assets/3.gif';
+import { Loader } from '../../components/index';
 
 export const Home = ({ input, setInput }) => {
 
@@ -178,11 +178,11 @@ export const Home = ({ input, setInput }) => {
                         Gucci
                     </label>
 
-                    <div className={`search-box ${styles.searchFilter}`} style={{marginTop: "1rem"}}>
-                            <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox"
-                                placeholder="Search"
-                                style={{textAlign: "left"}}
-                            />
+                    <div className={`search-box ${styles.searchFilter}`} style={{ marginTop: "1rem" }}>
+                        <input type="text" onChange={e => setInput(e.target.value)} className="nav-inputbox"
+                            placeholder="Search"
+                            style={{ textAlign: "left" }}
+                        />
                     </div>
                 </div>
             </div>
@@ -191,7 +191,12 @@ export const Home = ({ input, setInput }) => {
                 {
                     FilteredData.length === 0 ?
 
-                        <img src={Load} alt="loading" /> :
+                        <div style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)"
+                        }}><Loader /></div> :
                         FilteredData.map(i =>
                             i.name.toLowerCase().includes(input.toLowerCase()) &&
                                 i.price < Number(sliderVal) ?
