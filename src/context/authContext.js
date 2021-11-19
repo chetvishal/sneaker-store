@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import axios from 'axios';
+import { ROOT_ENDPOINT } from "../api/Api";
 
 const authContext = createContext();
 export const useAuthContext = () => useContext(authContext);
@@ -11,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
     const [userDetails, setUserDetails] = useState({ token, userId, username });
 
     const loginService = (username, password) => {
-        return axios.post("https://ecom-sneaker-api.herokuapp.com/login", {
+        return axios.post(`${ROOT_ENDPOINT}/login`, {
             user: { username, password }
         });
     }
@@ -51,7 +52,7 @@ export const AuthContextProvider = ({ children }) => {
     const signupUser = (signupDetails) => {
         return new Promise(async (resolve, reject) => {
             try {
-                await axios.post('https://ecom-sneaker-api.herokuapp.com/signup', {
+                await axios.post(`${ROOT_ENDPOINT}/signup`, {
                     data: {
                         username: signupDetails.username,
                         password: signupDetails.password,

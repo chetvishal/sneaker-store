@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer, useEffect } from 'react';
 import { reducerFunction } from '../reducers/reducerFunction';
 import axios from 'axios';
 import { useAuthContext } from './authContext';
+import { ROOT_ENDPOINT } from '../api/Api';
 
 const dataContext = createContext();
 
@@ -23,13 +24,13 @@ export const DataContextProvider = ({ children }) => {
 
     async function getData(userData = userDetails) {
 
-        await axios.get('https://ecom-sneaker-api.herokuapp.com/products').then((resp) => {
+        await axios.get(`${ROOT_ENDPOINT}/products`).then((resp) => {
             dispatch({ type: 'ADD_PRODUCTS_FROM_SERVER', payload: resp.data.products });
         }).catch(err => console.log('failed to fetch data from server: ', err));
 
         if (userData.userId !== "" && userData.token !== "") {
             await axios.get(
-                `https://ecom-sneaker-api.herokuapp.com/cart/${userData.userId}`, {
+                `${ROOT_ENDPOINT}/cart/${userData.userId}`, {
                 headers: {
                     'Authorization': userData.token
                 }
@@ -37,7 +38,7 @@ export const DataContextProvider = ({ children }) => {
                 dispatch({ type: 'ADD_CART_FROM_SERVER', payload: resp.data.cart.products });
             }).catch(err => console.log('failed to fetch data from server: (cartList)', err));
 
-            await axios.get(`https://ecom-sneaker-api.herokuapp.com/wishlist/${userData.userId}`, {
+            await axios.get(`${ROOT_ENDPOINT}/wishlist/${userData.userId}`, {
                 headers: {
                     'Authorization': userData.token
                 }
@@ -61,7 +62,7 @@ export const DataContextProvider = ({ children }) => {
     const updateServer = async (action, payload) => {
         switch (action) {
             case 'ADD_TO_CART': {
-                await axios.post('https://ecom-sneaker-api.herokuapp.com/cart', {
+                await axios.post(`${ROOT_ENDPOINT}/cart`, {
                     _id: payload.data._id,
                     quantity: 1,
                     userId: userDetails.userId
@@ -84,7 +85,7 @@ export const DataContextProvider = ({ children }) => {
                 break;
             }
             case 'REMOVE_FROM_CART': {
-                await axios.delete(`https://ecom-sneaker-api.herokuapp.com/cart`, {
+                await axios.delete(`${ROOT_ENDPOINT}/cart`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': userDetails.token
@@ -103,7 +104,7 @@ export const DataContextProvider = ({ children }) => {
             }
 
             case 'INCREASE_CART_QTY': {
-                await axios.patch(`https://ecom-sneaker-api.herokuapp.com/cart`, {
+                await axios.patch(`${ROOT_ENDPOINT}/cart`, {
                     ...payload,
                     quantity: payload.quantity + 1,
                     userId: userDetails.userId
@@ -123,7 +124,7 @@ export const DataContextProvider = ({ children }) => {
                 break;
             }
             case 'DECREASE_CART_QTY': {
-                await axios.patch(`https://ecom-sneaker-api.herokuapp.com/cart`, {
+                await axios.patch(`${ROOT_ENDPOINT}/cart`, {
                     ...payload,
                     quantity: payload.quantity - 1,
                     userId: userDetails.userId
@@ -143,7 +144,7 @@ export const DataContextProvider = ({ children }) => {
                 break;
             }
             case 'ADD_TO_WISHLIST': {
-                await axios.post(`https://ecom-sneaker-api.herokuapp.com/wishlist`, {
+                await axios.post(`${ROOT_ENDPOINT}/wishlist`, {
                     _id: payload.data._id,
                     userId: userDetails.userId
                 }, {
@@ -164,7 +165,7 @@ export const DataContextProvider = ({ children }) => {
                 break;
             }
             case 'REMOVE_FROM_WISHLIST': {
-                await axios.delete(`https://ecom-sneaker-api.herokuapp.com/wishlist`, {
+                await axios.delete(`${ROOT_ENDPOINT}/wishlist`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': userDetails.token
