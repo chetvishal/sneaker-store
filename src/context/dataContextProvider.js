@@ -198,7 +198,7 @@ export const DataContextProvider = ({ children }) => {
                 break;
             }
             case 'CLEAR_CART': {
-                await axios.post(`http://localhost:8000/cart/clear`, {
+                await axios.post(`${ROOT_ENDPOINT}/cart/clear`, {
                     userId: userDetails.userId
                 }, {
                     headers: {
