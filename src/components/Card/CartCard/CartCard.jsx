@@ -1,10 +1,17 @@
 import React from 'react';
 import styles from './cartCard.module.css';
 import { useDataContext } from '../../../context/dataContextProvider';
+import { debounce } from '../../../Utils/debounce';
 
-export const CartCard = ({data}) => {
+export const CartCard = ({ data }) => {
 
     const { updateServer } = useDataContext();
+    const debounceQty = debounce(1000);
+
+    if (data.quantity < 1) {
+        updateServer('REMOVE_FROM_CART', { _id: data._id._id })
+    }
+
 
     return (
         <div className={styles.cartCard}>
@@ -13,20 +20,20 @@ export const CartCard = ({data}) => {
                 <div>
                     <button
                         onClick={() => {
-                            updateServer('INCREASE_CART_QTY', {_id: data._id._id, quantity: data.quantity})
-                        }}
-                        className={styles.cartQtyBtn}
-                    >+</button>
-                    <span className={styles.cartQty}> {data.quantity} </span>
-                    <button
-                        onClick={() => {
-                            data.quantity === 1 ?
-                                updateServer('REMOVE_FROM_CART', {_id: data._id._id}) 
+                            data.quantity <= 1 ?
+                                debounceQty(() => updateServer('REMOVE_FROM_CART', { _id: data._id._id }))
                                 :
-                                updateServer('DECREASE_CART_QTY', {_id: data._id._id, quantity: data.quantity})
+                                debounceQty(() => updateServer('DECREASE_CART_QTY', { _id: data._id._id, quantity: data.quantity }))
                         }}
                         className={styles.cartQtyBtn}
                     >-</button>
+                    <span className={styles.cartQty}> {data.quantity} </span>
+                    <button
+                        onClick={() => {
+                            updateServer('INCREASE_CART_QTY', { _id: data._id._id, quantity: data.quantity })
+                        }}
+                        className={styles.cartQtyBtn}
+                    >+</button>
                 </div>
             </div>
             <div className={styles.cartDetails}>

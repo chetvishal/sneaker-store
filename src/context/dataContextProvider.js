@@ -10,7 +10,7 @@ export const useDataContext = () => useContext(dataContext);
 export const initialDataState = {
     products: [],
     sort: null,
-    showInventoryAll: false,
+    showInventoryAll: true,
     showFastDelivery: false,
     cart: [],
     wishList: [],
@@ -22,7 +22,7 @@ export const DataContextProvider = ({ children }) => {
     const { userDetails, setUserDetails } = useAuthContext();
 
     async function getData(userData = userDetails) {
-        
+
         await axios.get('https://ecom-sneaker-api.herokuapp.com/products').then((resp) => {
             dispatch({ type: 'ADD_PRODUCTS_FROM_SERVER', payload: resp.data.products });
         }).catch(err => console.log('failed to fetch data from server: ', err));
@@ -194,6 +194,25 @@ export const DataContextProvider = ({ children }) => {
                 await axios.get('/api/wishLists').then((resp) => {
                     console.log('response from context', resp)
                 }).catch(err => console.log('error from context'))
+                break;
+            }
+            case 'CLEAR_CART': {
+                await axios.post(`http://localhost:8000/cart/clear`, {
+                    userId: userDetails.userId
+                }, {
+                    headers: {
+                        'Authorization': userDetails.token
+                    }
+                }).then(response => {
+                    if (response.status === 200) {
+                        console.log("On clear cart")
+                        dispatch({ type: 'CLEAR_CART' });
+                        dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Order Successfull" } })
+                        removeToast();
+                    } else {
+                        throw Error
+                    }
+                }).catch(error => console.log('error clearing cart: ', error));
                 break;
             }
             default: return null;

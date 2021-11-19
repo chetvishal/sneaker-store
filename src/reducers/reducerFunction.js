@@ -34,6 +34,11 @@ export const reducerFunction = (state, action) => {
                 ...state,
                 cart: state.cart.filter(i => i._id._id !== action.payload._id),
             }
+        case 'CLEAR_CART': 
+            return {
+                ...state,
+                cart: []
+            }
         case 'ADD_TO_WISHLIST':
             return {
                 ...state,
