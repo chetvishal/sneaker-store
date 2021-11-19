@@ -12,21 +12,23 @@ function App() {
   const [input, setInput] = useState('');
 
   return (
-    <div className="App">
-      <Navbar setInput={setInput} />
-      <Routes>
-        <Route path="/" element={<Home input={input} setInput={setInput}/>} />
-        <PrivateRoute path="/wishlist" element={<WishList />} />
-        <PrivateRoute path="/cart" element={<Cart />} />
-        <Route path="/product/:id" element={<ProductPg />} />
-        <Route path="*" element={<NoRoute />} />
-        <Route path="/login" element={<Login />} />
-        <PrivateRoute path="/user" element={<User />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-      {toast.visible && <Toast text={toast.text} />}
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <div className="App">
+        <Navbar setInput={setInput} />
+        <Routes>
+          <Route path="/" element={<Home input={input} setInput={setInput} />} />
+          <PrivateRoute path="/wishlist" element={<WishList />} />
+          <PrivateRoute path="/cart" element={<Cart />} />
+          <Route path="/product/:id" element={<ProductPg />} />
+          <Route path="*" element={<NoRoute />} />
+          <PrivateRoute path="/user" element={<User />} />
+        </Routes>
+        {toast.visible && <Toast text={toast.text} />}
+        <Footer />
+      </div>
+    </Routes>
   );
 }
 
