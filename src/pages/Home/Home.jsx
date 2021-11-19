@@ -9,6 +9,7 @@ export const Home = ({ input }) => {
     const { state, dispatch } = useDataContext();
     const { cart, wishList } = state;
     const [sliderVal, setSliderVal] = useState(989);
+    const [brands, setBrands] = useState([])
 
     const handleDropDownChange = (e) => {
         dispatch({ type: "SORT", payload: e.target.value })
@@ -16,6 +17,10 @@ export const Home = ({ input }) => {
 
     const handleSlider = (e) => {
         setSliderVal(() => e.target.value);
+    }
+
+    const handleBrandsChange = e => {
+        e.target.checked ? setBrands([...brands, e.target.name]) : setBrands(brands.filter(i => i !== e.target.name))
     }
 
     const inCartAndWishList = (itemArr) => {
@@ -39,6 +44,22 @@ export const Home = ({ input }) => {
         else return itemArr;
     };
 
+    //filter by brands
+    const filterByBrands = (itemArr, brandsList) => {
+        let products = []
+
+        itemArr.map(i => {
+            brandsList.forEach(element => {
+                if (i.name.toLowerCase().includes(element.toLowerCase())) {
+                    products.push(i);
+                }
+            })
+            return i;
+        })
+
+        return brandsList.length !== 0 ? products : itemArr;
+    }
+
     //Function to filter products array
     const getFilteredData = (itemArr, { showInventoryAll, showFastDelivery }) => {
 
@@ -53,7 +74,9 @@ export const Home = ({ input }) => {
 
     const checkData = inCartAndWishList(state.products)
     const sortedData = sortData(checkData, state.sort);
-    const FilteredData = getFilteredData(sortedData, state);
+    const filterBrands = filterByBrands(sortedData, brands)
+    // const FilteredData = getFilteredData(sortedData, state);
+    const FilteredData = getFilteredData(filterBrands, state);
 
     return (
         <div className={styles.home}>
@@ -89,7 +112,7 @@ export const Home = ({ input }) => {
                         value={sliderVal}
                         className={`${styles.slider} ${styles.filterElement}`}
                         onChange={handleSlider} >
-                        </input> ₹{sliderVal}
+                    </input> ₹{sliderVal}
 
 
                     {/* FILTERING INPUT ELEMENTS */}
@@ -109,6 +132,50 @@ export const Home = ({ input }) => {
                             onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
                         />
                         Fast delivery only
+                    </label>
+
+
+                    {/* BRANDS */}
+                    <span className="util-heading-small">Brands</span>
+                    <label className={styles.filterCheckboxContainer}>
+                        <input
+                            type="checkbox"
+                            name="Nike"
+                            onChange={handleBrandsChange}
+                        />
+                        Nike
+                    </label>
+                    <label className={`${styles.filterCheckboxContainer} filter-element`}>
+                        <input
+                            type="checkbox"
+                            name="Adidas"
+                            onChange={handleBrandsChange}
+                        />
+                        Adidas
+                    </label>
+                    <label className={`${styles.filterCheckboxContainer} filter-element`}>
+                        <input
+                            type="checkbox"
+                            name="jordan"
+                            onChange={handleBrandsChange}
+                        />
+                        Jordans
+                    </label>
+                    <label className={`${styles.filterCheckboxContainer} filter-element`}>
+                        <input
+                            type="checkbox"
+                            name="Champion"
+                            onChange={handleBrandsChange}
+                        />
+                        Champion
+                    </label>
+                    <label className={`${styles.filterCheckboxContainer} filter-element`}>
+                        <input
+                            type="checkbox"
+                            name="gucci"
+                            onChange={handleBrandsChange}
+                        />
+                        Gucci
                     </label>
                 </div>
             </div>
