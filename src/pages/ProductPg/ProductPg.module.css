@@ -31,9 +31,10 @@
 
 .actionBtnTxt {
   display: inline;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   margin-left: 0.5rem;
   display: flex;
+  cursor: pointer;
   align-items: center;
 }
 

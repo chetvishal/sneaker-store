@@ -52,7 +52,7 @@ export const ProductPg = () => {
                                     {data.inCart ? 'GO TO CART' : 'ADD TO CART'}
                                 </span>
                             </div>
-                            <div className={styles.actionButton} style={{ marginLeft: "0.5rem" }}
+                            <div className={styles.actionButton} style={{ marginLeft: "0.5rem", paddingLeft: "1rem" }}
                                 onClick={() => data.inWishList ?
                                     updateServer('REMOVE_FROM_WISHLIST', { _id: data._id }) :
                                     updateServer('ADD_TO_WISHLIST', { data })}
