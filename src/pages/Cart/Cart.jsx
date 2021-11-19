@@ -4,6 +4,7 @@ import styles from "./Cart.module.css";
 import { ShoppingCart } from '../../assets/index';
 import axios from 'axios';
 import { API_URL, RAZORPAY_CHECKOUT_URL, RAZORPAY_KEY, RAZORPAY_LOGO } from '../../api/Razorpay';
+import { useNavigate } from 'react-router';
 
 function loadScript(src) {
     return new Promise((resolve) => {
@@ -21,8 +22,9 @@ function loadScript(src) {
 
 export const Cart = () => {
 
-    const { state, dispatch, updateServer } = useDataContext();
+    const { state, updateServer } = useDataContext();
     const { cart } = state;
+    const navigate = useNavigate();
 
     const cartVal = cart.reduce((acc, cur) => {
         return Number(acc) + Number(cur._id.price) * Number(cur.quantity)
@@ -62,7 +64,6 @@ export const Cart = () => {
 
                 if (paymentVerification.data.success) {
                     alert(paymentVerification.data.message);
-                    // clearCart();
                     updateServer('CLEAR_CART')
                 } else {
                     alert("something went wrong");
@@ -87,11 +88,6 @@ export const Cart = () => {
 
 
 
-    const removeToast = () => {
-        setTimeout(() => {
-            dispatch({ type: 'SET_TOAST', payload: { visible: false, text: "" } })
-        }, 3000)
-    }
 
     return (
         <div className={styles.cartComponent}>
@@ -100,9 +96,16 @@ export const Cart = () => {
                     CART
                     <ShoppingCart style={{ width: "2rem", marginLeft: "1rem" }} />
                 </div> :
-                <div className={styles.cartHeadingText}>
-                    CART IS EMPTY
-                    <ShoppingCart style={{ width: "2rem", marginLeft: "1rem" }} />
+                <div>
+                    <div className={styles.cartHeadingText}>
+                        CART IS EMPTY
+                        <ShoppingCart style={{ width: "2rem", marginLeft: "1rem" }} />
+                    </div>
+                    <button
+                        className="submit-button"
+                        style={{ backgroundColor: "black", margin: "0 auto", display: "block", marginTop: "2rem" }}
+                        onClick={() => navigate('/')}
+                    >START SHOPPING</button>
                 </div>
             }</span>
             <div className={styles.cart}>
@@ -128,14 +131,10 @@ export const Cart = () => {
                         </div>
                         <button
                             className={styles.orderBtn}
-                            // onClick={() => {
-                            //     dispatch({ type: 'SET_TOAST', payload: { visible: true, text: "Payment feature coming soon..." } })
-                            //     removeToast()
-                            // }}
 
                             onClick={displayRazorpay}
                         >Place Order</button>
-                        <span style={{display: "block", marginTop: "1rem", fontSize: "0.9rem", fontWeight: "bold", color: "#918a8a"}}>Dummy debit card: 4111 1111 1111 1111</span>
+                        <span style={{ display: "block", marginTop: "1rem", fontSize: "0.9rem", fontWeight: "bold", color: "#918a8a" }}>Dummy debit card: 4111 1111 1111 1111</span>
                     </div>
                 </div>
             </div>
@@ -144,6 +143,3 @@ export const Cart = () => {
 }
 
 
-// display: block;
-// margin-top: 1rem;
-// font-size: 0.9rem;
