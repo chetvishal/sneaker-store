@@ -26,7 +26,9 @@ export const DataContextProvider = ({ children }) => {
 
         await axios.get(`${ROOT_ENDPOINT}/products`).then((resp) => {
             dispatch({ type: 'ADD_PRODUCTS_FROM_SERVER', payload: resp.data.products });
-        }).catch(err => console.log('failed to fetch data from server: ', err));
+        }).catch(err => {
+            alert("failed to fetch data from server")
+            console.log('failed to fetch data from server: ', err)});
 
         if (userData.userId !== "" && userData.token !== "") {
             await axios.get(
