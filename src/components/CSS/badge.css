@@ -1,0 +1,83 @@
+@import url('./colors.css');
+.avatar-badge {
+    position: relative;
+}
+
+.avatar-badge-online-icon {
+    height: 8px;
+    min-width: 8px;
+    color: black;
+    background-color: var(--primary);
+    position: absolute;
+    border-radius: 50%;
+    bottom: -26px;
+    left: 45px;
+}
+
+.avatar-badge-notification-icon {
+    background-color: var(--primary);
+    color: white;
+    font-size: 10px;
+    height: 11px;
+    position: absolute;
+    width: 11px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 2.5px;
+    /* bottom: -26px; */
+    font-weight: bolder;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.notification-value {
+    position: absolute;
+    top: 2px;
+    left: 5px;
+}
+
+.icon-badge {
+    position: relative;
+    font-size: 20px;
+}
+
+.icon-badge-circle-icon {
+    height: 12px;
+    min-width: 12px;
+    color: black;
+    background-color: var(--success);
+    position: absolute;
+    border-radius: 50%;
+    left: 27px;
+    bottom: 3px;
+}
+
+.simple-badge {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.1em 0.7em;
+    font-weight: bold;
+}
+
+.nostyle {
+    text-decoration: none;
+    color: inherit;
+}
+
+.icon-badge .avatar-badge-notification-icon {
+    top: -3px;
+    left: 17px;
+}
+
+.icon-badge .avatar-badge-online-icon {
+    top: 0px;
+    left: 17px;
+}
+
+@media (max-width: 700px){
+    .notification-value {
+        position: absolute;
+        top: -16px;
+        left: 5px;
+    }
+}
+

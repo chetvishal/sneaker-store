@@ -1,0 +1,16 @@
+@import url('../CSS//colors.css');
+@import url('../CSS/alert.css');
+
+.toast {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    min-width: 300px;
+}
+
+.toast-dismiss {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}

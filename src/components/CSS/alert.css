@@ -1,0 +1,28 @@
+@import url('./colors.css');
+
+.alert{
+    border-color: transparent;
+    border: 0.5px solid transparent;
+    padding: 1rem;
+    margin: 10px 0px;
+}
+
+.alert-danger {
+    background-color: var(--danger-light);
+    color: var(--danger);
+}
+
+.alert-primary {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.alert-success {
+    background-color: var(--success-light);
+    color: var(--success)
+}
+
+.alert-warning {
+    background-color: var(--warning-light);
+    color: var(--warning)
+}

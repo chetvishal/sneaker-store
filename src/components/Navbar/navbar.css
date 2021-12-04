@@ -1,0 +1,161 @@
+@import url("../CSS/colors.css");
+
+header {
+  position: relative;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 5.625rem;
+  background-color: white;
+  color: black;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar .icon-badge {
+  color: black;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-weight: 500;
+  letter-spacing: 3px;
+  vertical-align: middle;
+  display: flex;
+}
+
+.nav-list {
+  display: inline-flex;
+  margin: 0;
+  padding: 0px 0px;
+  align-items: center;
+}
+
+.nav-list li {
+  display: inline-block;
+  margin: 0px 0px 0px 15px;
+  font-size: 0.9rem;
+  color: #777777;
+  padding: 2px 5px;
+}
+
+.nav-list li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.nav-inputbox {
+  border: none;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.nav-inputbox:focus {
+  outline: none;
+}
+
+.search-box:focus-within {
+  border-bottom: 1px solid black;
+}
+
+.nav-icon-label {
+  display: none;
+}
+
+/* NAVBAR - TOGGLE  */
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: none;
+  align-items: center;
+}
+
+/* HAMBURGER */
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+
+.times {
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  header {
+        border-bottom: 1px solid #e2e2e2;
+  }
+  .navbar {
+        border-bottom: none;
+    justify-content: space-around;
+  }
+ 
+  .nav-list {
+
+    /* NEW CSS */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 3rem;
+    justify-content: center;
+    display: none;
+  }
+  .nav-icon-label {
+    display: inline;
+    margin-left: 0.8rem;
+  }
+  .search-box {
+    border-bottom: 1px solid black;
+    height: 27px;
+    display: flex;
+  }
+  .nav-inputbox {
+    margin-right: 10px;
+  }
+  .nav-list li {
+    font-size: 1.25rem;
+    color: #777777;
+  }
+  .nav-toggle-label {
+    display: flex;
+    font-size: 1.3rem;
+  }
+
+  .nav-toggle:checked ~ nav .nav-list {
+    display: flex;
+  }
+
+  .nav-toggle:checked ~ nav .nav-logo {
+    display: none;
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label {
+    align-items: flex-start;
+    margin-top: 2.27rem;
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label .bars {
+    display: none;
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label .times {
+    display: flex;
+  }
+}

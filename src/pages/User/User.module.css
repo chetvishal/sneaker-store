@@ -1,0 +1,57 @@
+.userActionList {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(200px, 1fr));
+    /* width: 50%; */
+    margin: 0 auto;
+    column-gap: 1.5rem;
+    row-gap: 1.5rem;
+}
+
+.userActionBtn {
+    border: 1px solid black;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: left;
+    cursor: pointer;
+}
+
+.userActionImg{
+    width: 2.5rem;
+    height: auto;
+}
+
+.userActionTxt{
+    display: block;
+    font-size: 1.2rem;
+    align-self: center;
+    padding: 0 0.9rem;
+}
+
+.userContainer {
+    border: 1px solid black;
+    padding: 1rem 1rem 3rem;
+    margin: 2rem auto;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .userContainerHeading {
+    margin: 2.75rem 0;
+    text-align: center;
+  }
+
+  @media (max-width: 488px) {
+    .userActionList {
+        grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
