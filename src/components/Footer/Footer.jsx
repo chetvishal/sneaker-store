@@ -4,7 +4,7 @@ export const Footer = () => {
 
     return (
         <footer className={styles.footer}>
-            <h3>Made by Vishal Singhs</h3>
+            <h3>Made by Vishal Singh</h3>
             <span className={styles.footer_social_link}>
                 <a href="https://github.com/chetvishal" className="nostyle">
                     <i className="fab fa-github"></i>

@@ -36,6 +36,7 @@ export const Login = () => {
         if (isUserLoggedIn) {
             logoutUser()
         } else {
+            setLoginBtnTxt("Logging In...")
             await loginUserWithCredentials("Elon", "12345")
                 .then((resp) => {
                     updateServer('LOGIN', resp)
@@ -56,7 +57,7 @@ export const Login = () => {
         <div className={styles.login}>
             <div className={styles.loginForm}>
                 <div className={styles.loginFormHeading}>
-                    <span className="util-heading-medium">{loginBtnTxt}</span>
+                    <span className="util-heading-medium">Log In</span>
                     <span className="util-heading-small">You need to be logged in to continue</span>
                     <span className={`util-heading-small ${styles.signUpLink}`}>
                         <Link to="/signup" className="nostyle">
@@ -84,7 +85,7 @@ export const Login = () => {
                         className="submit-button"
                         style={{ backgroundColor: "black" }}
                         onClick={handleLogin}
-                    >{isUserLoggedIn ? "LOGOUT" : 'LOGIN'}</button>
+                    >{isUserLoggedIn ? "LOGOUT" : loginBtnTxt}</button>
                 </form>
                 <span
                     className="util-heading-small"
