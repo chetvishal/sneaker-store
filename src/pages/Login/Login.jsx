@@ -13,12 +13,14 @@ export const Login = () => {
     const navigate = useNavigate()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loginBtnTxt, setLoginBtnTxt] = useState("Log in")
 
     const handleLogin = async (e) => {
         e.preventDefault();
         if (isUserLoggedIn) {
             logoutUser()
         } else {
+            setLoginBtnTxt("Logging In...")
             await loginUserWithCredentials(username, password)
                 .then((resp) => {
                     updateServer('LOGIN', resp)
@@ -54,7 +56,7 @@ export const Login = () => {
         <div className={styles.login}>
             <div className={styles.loginForm}>
                 <div className={styles.loginFormHeading}>
-                    <span className="util-heading-medium">Log in</span>
+                    <span className="util-heading-medium">{loginBtnTxt}</span>
                     <span className="util-heading-small">You need to be logged in to continue</span>
                     <span className={`util-heading-small ${styles.signUpLink}`}>
                         <Link to="/signup" className="nostyle">
