@@ -1,0 +1,21 @@
+.footer {
+    /* #b8b4b6 */
+    /* rgb(219, 214, 214) */
+    background-color: white;
+    color: black;
+    padding: 0.5rem;
+    margin-top: auto;
+    text-align: center;
+    line-height: 2rem;
+    border-top: 1px solid #e2e2e2;
+    position: absolute;
+    bottom: -82.6px;
+    right: 0;
+    left: 0;
+  }
+
+  .footer_social_link {
+      color:black;
+      font-size: 1.3rem;
+      margin: 10px 10px;
+  }
